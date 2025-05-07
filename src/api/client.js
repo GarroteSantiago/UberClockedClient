@@ -26,9 +26,6 @@ client.interceptors.request.use(
 client.interceptors.response.use(
     (response) => response.data,
     (error) => {
-        if (error.response?.status === 401) {
-            // Handle unauthorized access (For example: redirect to log in)
-        }
         return Promise.reject(error.response?.data || error.message);
     }
 );
