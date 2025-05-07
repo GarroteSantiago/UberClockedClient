@@ -2,7 +2,7 @@ import client from '../client.js'
 
 
 export const createProvince = async (name) => {
-    await client.post('/localities/', name)
+    await client.post('/localities/', {name})
 }
 
 export const readAllProvinces = async () => {

@@ -12,8 +12,8 @@ export const readRoleById = async (id) => {
     await client.get(`/roles/${id}`)
 }
 
-export const updateRole = async (id, name) => {
-    await client.patch(`/roles/${id}`, {name})
+export const updateRole = async (id, data) => {
+    await client.patch(`/roles/${id}`, data)
 }
 
 export const deleteRole = async (id) => {

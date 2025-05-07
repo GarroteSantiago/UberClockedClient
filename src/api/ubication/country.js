@@ -2,7 +2,7 @@ import client from "../client.js";
 
 
 export const createCountry = async (name) => {
-    await client.post(`/countries`, name)
+    await client.post(`/countries`, {name})
 }
 
 export const readAllCountries = async () => {

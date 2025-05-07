@@ -1,7 +1,7 @@
 import client from '../client.js'
 
 export const createLocality = async (name) => {
-    await client.post('/localities/', name)
+    await client.post('/localities/', {name})
 }
 
 export const readAllLocalities = async () => {
