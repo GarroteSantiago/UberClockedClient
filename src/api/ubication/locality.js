@@ -1,4 +1,4 @@
-import client from './client.js'
+import client from '../client.js'
 
 export const createLocality = async (name) => {
     await client.post('/localities/', name)

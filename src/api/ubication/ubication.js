@@ -1,4 +1,4 @@
-import client from './client'
+import client from '../client.js'
 
 export const createUbication = async (locality_id, province_id, country_id) => {
     await client.post('/ubication', {country_id, province_id, locality_id})
