@@ -7,6 +7,7 @@ const useAuth = create(
         (set, get) => ({
             user: null,
             isLoading: false,
+            isAuthenticated: false,
 
             login: (user) => set({user}),
             logout: () => set({user: null}),
@@ -16,7 +17,7 @@ const useAuth = create(
                 set({isLoading: true});
 
                 await checkSession();
-
+                set({isAuthenticated: true});
                 set({isLoading: false});
             }
         }),
