@@ -1,14 +1,14 @@
 import client from './client.js'
 import useAuth from '../stores/auth.js'
 
+const baseUrl = '/auth'
+
 export const login = async (email, password) => {
-    const response = await client.post('/auth/token', {email, password});
-    useAuth.getState().set(response.data.token);
+    const response = await client.post(`${baseUrl}/token`, {email, password});
+    useAuth.getState().set(response.user);
 }
 
 export const logout = async (/*token*/) => {
-    /* The logout method is disabled from the backend since it's not implemented the token blacklist (SHOULD DO)
-    await client.post('/auth/', {token});
-    */
+    await client.post(`${baseUrl}/`)
     useAuth.getState().logout();
 }

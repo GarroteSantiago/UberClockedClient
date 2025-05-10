@@ -1,10 +1,9 @@
 import useAuth from '../stores/auth.js';
-import {jwtDecode} from 'jwt-decode';
 
 export const hasPermission = (requiredRole) => {
-    const token = useAuth.getState().token;
-    if (token) {
-        return jwtDecode(token).role === requiredRole;
+    const user = useAuth.getState().user;
+    if (user) {
+        return user.role === requiredRole;
     } else {
         return false;
     }
