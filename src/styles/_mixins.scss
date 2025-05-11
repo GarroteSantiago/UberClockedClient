@@ -1,0 +1,6 @@
+// Mixin to manage screen size //
+@mixin respondTo($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}

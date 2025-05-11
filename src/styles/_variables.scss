@@ -1,0 +1,37 @@
+// ====== CORE SETTINGS ====== //
+$baseFontSize: 16px;
+$baseSpacing: 0.5rem;
+// ===== Colors ===== //
+$primaryColor: #76386C;
+$importantTextColor: #FFFFFF;
+$nonImportantTextColor: rgba(255, 255, 255, 0.20);
+$createTextButtonColor: #1A00FF;
+$updateTextButtonColor: $primaryColor;
+$destroyTextButtonColor: #C9302C;
+$baseBackgroundColor: #0D0811;
+$overlayBackgroundColor: rgba(13, 8, 17, 0.23);
+$formBackgroundColor: #1B1222;
+$buttonBackgroundColor: #393039;
+$fieldBackgroundColor: $baseBackgroundColor;
+$fieldBorderColor: #FFFFFF;
+$fieldTextColor: $nonImportantTextColor;
+$ratingStarColor: #ffd700;
+
+// ====== SPACING ====== //
+$spacing-xxs: $baseSpacing * 0.5;
+$spacing-sm:  $baseSpacing * 2;
+$spacing-lg:  $baseSpacing * 4;
+
+// ===== Typography ===== //
+$primaryFont: "Inconsolata", monospace;
+$fontSizeSm: 0.877rem;
+$fontSizeMd: 1rem;
+$fontSizeLg: 1.25rem;
+
+// ====== BREAKPOINTS (em-based) ====== //
+$breakpoint-xs:  25em;
+$breakpoint-sm:  36em;
+$breakpoint-md:  48em;
+$breakpoint-lg:  62em;
+$breakpoint-xl:  75em;
+$breakpoint-xxl: 87.5em;
