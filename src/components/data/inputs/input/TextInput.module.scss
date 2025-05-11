@@ -1,0 +1,39 @@
+@import "src/styles/variables";
+
+.input{
+  caret-color: transparent;
+  width: 100%;
+  max-width: 15rem;
+  height: 3rem;
+  border: 1px solid #FFFFFF;
+  border-radius: 14px;
+  color: $fieldTextColor;
+  background-color: $fieldBackgroundColor;
+  font-size: clamp($fontSizeSm, $fontSizeSm, $fontSizeMd);
+  text-align: center;
+  font-family: $primaryFont;
+  padding: 0 $spacing-sm;
+  box-sizing: border-box;
+}
+
+.incorrectInput{
+  caret-color: transparent;
+  width: 100%;
+  max-width: 15rem;
+  height: 3rem;
+  border: 1px solid $incorrectColor;
+  border-radius: 14px;
+  color: $incorrectColor;
+  background-color: $fieldBackgroundColor;
+  font-size: clamp($fontSizeSm, $fontSizeSm, $fontSizeMd);
+  text-align: center;
+  font-family: $primaryFont;
+  padding: 0 $spacing-sm;
+  box-sizing: border-box;
+}
+
+.input::placeholder{
+  color: #FFFFFF;
+  opacity: 0.2;
+  font-size: clamp($fontSizeSm, $fontSizeSm, $fontSizeMd);
+}

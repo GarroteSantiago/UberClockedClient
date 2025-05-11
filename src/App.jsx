@@ -11,6 +11,10 @@ import Components from "./pages/Protected/Admin/Components/Components.js";
 import ProtectedRoute from "./components/utils/ProtectedRoute.js";
 import Profile from "./pages/Protected/User/profile/Profile.js";
 import AuthRoute from "./components/utils/AuthRoute.js";
+import Modal from "react-modal";
+
+
+Modal.setAppElement('#root')
 
 function App() {
   return (
