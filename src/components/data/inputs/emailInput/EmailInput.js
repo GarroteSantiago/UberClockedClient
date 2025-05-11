@@ -1,14 +1,14 @@
 import React from 'react';
-import styles from './TextInput.module.scss';
+import styles from '../Input.module.scss';
 
-function TextInput({value: externalValue, onChange: externalOnChange, placeholder, minLength=0, maxLength=20, pattern = "^[A-Za-z0-9]+$"}) {
+function EmailInput({value: externalValue, onChange: externalOnChange, placeholder, maxLength = 50, pattern = "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"}) {
     const [internalValue, setInternalValue] = React.useState(externalValue || "");
     const [isValid, setIsValid] = React.useState(true);
 
     const handleChange = function(e) {
         const val = e.target.value;
         if (externalOnChange) {
-            externalOnChange(e); // Propagate to parent
+            externalOnChange(e);
         } else {
             setInternalValue(val);
         }
@@ -20,12 +20,12 @@ function TextInput({value: externalValue, onChange: externalOnChange, placeholde
     return (
         <input
             className={isValid ? styles.input : styles.incorrectInput}
-            type="text"
+            type="email"
             value={value}
             onChange={handleChange}
-            placeholder={placeholder}
+            placeholder={placeholder || "Enter email"}
             required
-            minLength={minLength}
+            minLength={5}
             maxLength={maxLength}
             size={10}
             pattern={pattern}
