@@ -1,0 +1,15 @@
+@import "src/styles/variables";
+
+.menuButton{
+  color: $importantTextColor;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.visitedMenuButton{
+  color: $nonImportantTextColor;
+  background-color: transparent;
+  border: none;
+  cursor: default;
+}

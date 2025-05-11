@@ -1,0 +1,20 @@
+.dropDown{
+  position: relative;
+  display: inline-block;
+}
+.dropDownMenu {
+  position: absolute;
+  top:100%;
+  left:50%;
+  transform: translateX(-50%);
+  min-width: max-content;
+  width: auto;
+  height: fit-content;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  margin-top: 5px;
+}
+
+.dropDownMenu > *:not(:last-child) {
+  border-bottom: 2px solid #76386C;
+}

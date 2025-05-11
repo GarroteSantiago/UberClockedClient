@@ -8,3 +8,8 @@ export const hasPermission = (requiredRole) => {
         return false;
     }
 };
+
+export const isAuthenticated = () => {
+    const user = useAuth.getState().user;
+    return !!user;
+}

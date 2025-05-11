@@ -1,0 +1,13 @@
+@import "src/styles/variables";
+
+.textButton{
+  color: $importantTextColor;
+  font-family: $primaryFont;
+  font-size: clamp($fontSizeSm, $fontSizeSm, $fontSizeMd);
+}
+
+.visitedTextButton{
+  color: $nonImportantTextColor;
+  font-family: $primaryFont;
+  font-size: clamp($fontSizeSm, $fontSizeSm, $fontSizeMd);
+}
