@@ -1,0 +1,29 @@
+@import "src/styles/variables";
+
+.screen{
+  width: 100%;
+  height: 100%;
+  background: $baseBackgroundColor;
+  font: $primaryFont;
+  font-size: $fontSizeMd;
+  color: $primaryColor;
+}
+
+.logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+}
+
+.options{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+}
+
+.option *:not(:last-child){
+  border-right: 1px solid $primaryColor;
+}
