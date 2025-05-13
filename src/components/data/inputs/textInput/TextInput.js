@@ -32,3 +32,4 @@ function TextInput({value: externalValue, onChange: externalOnChange, placeholde
         />
     );
 }
+export default TextInput;

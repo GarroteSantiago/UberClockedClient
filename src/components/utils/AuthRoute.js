@@ -19,7 +19,7 @@ const AuthRoute = ({ children }) => {
     }, [isLoading, isAuthenticated, navigate, location.state]);
 
     if (isLoading) {
-        return <LoadingSpinner fullPage />;
+        return <p>Loading...</p>;
     }
 
     if (isAuthenticated) {

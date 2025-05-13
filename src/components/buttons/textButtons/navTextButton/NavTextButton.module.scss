@@ -1,6 +1,6 @@
-@import "src/styles/variables";
+@use "../../../../styles/variables" as vars;
 .navTextButton{
-  font: $primaryFont;
-  color: $primaryColor;
-  font-size: $fontSizeSm;
+  font: vars.$primaryFont;
+  color: vars.$primaryColor;
+  font-size: vars.$fontSizeSm;
 }

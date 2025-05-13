@@ -16,9 +16,16 @@ const useAuth = create(
 
                 set({isLoading: true});
 
-                await checkSession();
-                set({isAuthenticated: true});
-                set({isLoading: false});
+                try {
+                    await checkSession();
+                    set({ isAuthenticated: true });
+                } catch (error) {
+                    console.warn("User not authenticated:", error);
+                    set({ isAuthenticated: false });
+                    useAuth.getState().logout?.();
+                } finally {
+                    set({ isLoading: false });
+                }
             }
         }),
         {

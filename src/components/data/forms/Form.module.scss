@@ -1,0 +1,47 @@
+@use '../../../styles/variables' as vars;
+.formContainer{
+  font-family: vars.$primaryFont;
+  font-weight: normal;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: vars.$formBackgroundColor;
+  min-height: fit-content;
+  height: 50vh;
+  max-height: 80vh;
+  min-width: max-content;
+  width: 50vw;
+  max-width: 20vw;
+  border-radius: 1rem;
+}
+
+.title{
+  font-family: vars.$primaryFont;
+  font-weight: normal;
+  font-style: normal;
+  font-size: vars.$fontSizeLg;
+  color: vars.$importantTextColor;
+  margin: vars.$spacing-sm;
+}
+
+.error{
+  font-size: vars.$fontSizeSm;
+  color: vars.$incorrectColor;
+}
+
+.form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  min-height: max-content;
+  height: auto;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scrollbar-base-color: rgba(255, 255, 255, 0.1);
+  margin: vars.$spacing-sm;
+  gap: vars.$spacing-sm;
+}

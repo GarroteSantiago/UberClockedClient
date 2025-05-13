@@ -5,7 +5,7 @@ import NavTextButton from "../../../components/buttons/textButtons/navTextButton
 
 function Start() {
     return (
-        <div className={styles.screen}>
+        <>
             <div className={styles.logo}>
                 <StartLogo />
             </div>
@@ -14,7 +14,7 @@ function Start() {
                 <NavTextButton text="Sign Up" route="/signUp" />
                 <NavTextButton text="Guest" route="/home" />
             </div>
-        </div>
+        </>
     )
 }
 export default Start;

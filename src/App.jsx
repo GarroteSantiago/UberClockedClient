@@ -24,7 +24,7 @@ function App() {
                   <Route index element={<AuthRoute><Start /></AuthRoute>} />
                   <Route path="signUp" element={<AuthRoute><SignUp /></AuthRoute>} />
                   <Route path="login" element={<AuthRoute><Login /></AuthRoute>} />
-                  <Route path="home/" element={<NavLayout />} >
+                  <Route path="home" element={<NavLayout />} >
                       <Route index element={<Home />} />
                       <Route path="store/pc-hardware" element={<StoreHardware />} />
                       <Route path="store/server-hardware" element={<StoreHardware />} />

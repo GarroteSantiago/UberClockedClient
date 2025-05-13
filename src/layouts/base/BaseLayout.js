@@ -1,9 +1,12 @@
 import React from "react";
+import {Outlet} from "react-router-dom";
 import styles from "./BaseLayout.module.scss";
 
-function BaseLayout({ children }) {
+function BaseLayout() {
     return(
-        children
+        <div className={styles.screen}>
+            <Outlet />
+        </div>
     )
 }
 export default BaseLayout;

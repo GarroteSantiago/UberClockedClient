@@ -32,3 +32,4 @@ function PasswordInput({value: externalValue, onChange: externalOnChange, placeh
         />
     );
 }
+export default PasswordInput;

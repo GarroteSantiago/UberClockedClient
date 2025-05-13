@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./NavTextButton.module.css";
+import styles from "./NavTextButton.module.scss";
 import {Link} from "react-router-dom";
 
 function NavTextButton({text, route}) {

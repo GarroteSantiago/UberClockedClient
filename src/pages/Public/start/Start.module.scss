@@ -1,12 +1,12 @@
-@import "src/styles/variables";
+@use "../../../styles/variables" as vars;
 
 .screen{
   width: 100%;
   height: 100%;
-  background: $baseBackgroundColor;
-  font: $primaryFont;
-  font-size: $fontSizeMd;
-  color: $primaryColor;
+  background: vars.$baseBackgroundColor;
+  font: vars.$primaryFont;
+  font-size: vars.$fontSizeMd;
+  color: vars.$primaryColor;
 }
 
 .logo{
@@ -14,6 +14,7 @@
   align-items: center;
   justify-content: center;
   height: 20vh;
+  margin: 5vh;
 }
 
 .options{
@@ -21,9 +22,9 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: $spacing-sm;
+  gap: vars.$spacing-sm;
 }
 
 .option *:not(:last-child){
-  border-right: 1px solid $primaryColor;
+  border-right: 1px solid vars.$primaryColor;
 }

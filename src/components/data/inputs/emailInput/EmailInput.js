@@ -32,3 +32,4 @@ function EmailInput({value: externalValue, onChange: externalOnChange, placehold
         />
     );
 }
+export default EmailInput;

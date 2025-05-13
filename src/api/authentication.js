@@ -5,7 +5,7 @@ const baseUrl = '/auth'
 
 export const login = async (email, password) => {
     const response = await client.post(`${baseUrl}/token`, {email, password});
-    useAuth.getState().set(response.user);
+    useAuth.getState().login(response.user);
 }
 
 export const logout = async (/*token*/) => {

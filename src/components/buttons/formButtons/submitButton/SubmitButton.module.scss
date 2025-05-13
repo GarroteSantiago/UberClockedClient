@@ -1,0 +1,14 @@
+@use '../../../../styles/variables' as vars;
+
+.button{
+  min-width: max-content;
+  max-width: 5vw;
+  font-size: vars.$fontSizeSm;
+  background: vars.$buttonBackgroundColor;
+  border: none;
+  color: vars.$importantTextColor;
+  text-align: center;
+  cursor: pointer;
+  padding: vars.$spacing-xxs vars.$spacing-lg;
+  border-radius: 0.5rem;
+}
