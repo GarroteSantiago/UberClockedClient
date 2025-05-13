@@ -1,0 +1,10 @@
+@use "../../../styles/variables" as vars;
+
+.dropDownMenuItem{
+  display: block;
+  padding: vars.$spacing-xxs vars.$spacing-sm;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  background: vars.$dropDownMenuBackgroundColor;
+}

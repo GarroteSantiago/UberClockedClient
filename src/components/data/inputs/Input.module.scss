@@ -1,4 +1,4 @@
-@import "../../../styles/variables";
+@use "../../../styles/variables" as vars;
 
 .input{
   caret-color: transparent;
@@ -7,12 +7,12 @@
   height: 3rem;
   border: 1px solid #FFFFFF;
   border-radius: 14px;
-  color: $fieldTextColor;
-  background-color: $fieldBackgroundColor;
-  font-size: clamp($fontSizeSm, $fontSizeSm, $fontSizeMd);
+  color: vars.$fieldTextColor;
+  background-color: vars.$fieldBackgroundColor;
+  font-size: clamp(0.875rem, 0.875rem, 1rem);
   text-align: center;
-  font-family: $primaryFont;
-  padding: 0 $spacing-sm;
+  font-family: vars.$primaryFont;
+  padding: 0 vars.$spacing-sm;
   box-sizing: border-box;
 }
 
@@ -21,19 +21,19 @@
   width: 100%;
   max-width: 15rem;
   height: 3rem;
-  border: 1px solid $incorrectColor;
+  border: 1px solid vars.$incorrectColor;
   border-radius: 14px;
-  color: $incorrectColor;
-  background-color: $fieldBackgroundColor;
-  font-size: clamp($fontSizeSm, $fontSizeSm, $fontSizeMd);
+  color: vars.$incorrectColor;
+  background-color: vars.$fieldBackgroundColor;
+  font-size: clamp(0.875rem, 0.875rem, 1rem);
   text-align: center;
-  font-family: $primaryFont;
-  padding: 0 $spacing-sm;
+  font-family: vars.$primaryFont;
+  padding: 0 vars.$spacing-sm;
   box-sizing: border-box;
 }
 
 .input::placeholder{
   color: #FFFFFF;
   opacity: 0.2;
-  font-size: clamp($fontSizeSm, $fontSizeSm, $fontSizeMd);
+  font-size: clamp(0.875rem, 0.875rem, 1rem);
 }

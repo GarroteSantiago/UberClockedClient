@@ -9,6 +9,7 @@ import { isAuthenticated } from "../../../utils/authorizationChecker.js";
 
 function NavBar() {
     const isAuthed = isAuthenticated();
+    console.log("isAuthed", isAuthed);
 
     const storeOptions = [
         {
@@ -37,21 +38,23 @@ function NavBar() {
                 <NavLogo />
             </div>
             <div className={styles.navOptions}>
-                <DropDownMenuTextButton text="Home" route="/" />
+                <DropDownMenuTextButton text="Home" route="/home" />
                 <DropDownMenu options={storeOptions} buttonText={"Store"} />
                 <DropDownMenu options={buildOptions} buttonText={"Build"} />
-                <DropDownMenuTextButton text="Roulette" route="/" />
+                <DropDownMenuTextButton text="Roulette" route="/roulette" />
             </div>
             {isAuthed && (
+                <div className={styles.imageOptions}>
+                </div>
+            )}
+            {!isAuthed && (
                 <div className={styles.textOptions}>
                     <NavTextButton text="Login" route="/login" />
                     <NavTextButton text="Sign Up" route="/signUp" />
                 </div>
             )}
-            {!isAuthed && (
-                <div className={styles.imageOptions}>
-                </div>
-            )}
         </div>
     )
 }
+
+export default NavBar;

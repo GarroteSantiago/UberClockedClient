@@ -7,7 +7,7 @@ function DropDownMenuButton({ onClick, isOpen, text }) {
 
     return (
         <button
-            className={isOnUrl ? styles.menuButton : styles.visitedMenuButton}
+            className={isOnUrl ? styles.visitedMenuButton : styles.menuButton}
             onClick={onClick}
             aria-expanded={isOpen}
         >

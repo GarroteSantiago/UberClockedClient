@@ -1,13 +1,29 @@
-@import "../../../../styles/variables";
+@use "../../../../styles/variables" as vars;
 
-.textButton{
-  color: $importantTextColor;
-  font-family: $primaryFont;
-  font-size: clamp($fontSizeSm, $fontSizeSm, $fontSizeMd);
+.textButton, .textButton:visited, .textButton:active, .textButton:focus, .textButton:hover {
+  color: vars.$importantTextColor;
+  font-family: vars.$primaryFont;
+  font-size: clamp(0.877rem, 0.877rem, 1rem);
+  cursor: pointer;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-decoration: none;
+  align-content: center;
 }
 
-.visitedTextButton{
-  color: $nonImportantTextColor;
-  font-family: $primaryFont;
-  font-size: clamp($fontSizeSm, $fontSizeSm, $fontSizeMd);
+
+
+.visitedTextButton, .visitedTextButton:visited, .visitedTextButton:active, .visitedTextButton:focus, .visitedTextButton:hover {
+  color: vars.$nonImportantTextColor;
+  font-family: vars.$primaryFont;
+  font-size: clamp(0.877rem, 0.877rem, 1rem);
+  cursor: pointer;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-decoration: none;
+  align-content: center;
 }

@@ -1,14 +1,14 @@
-@import "../../../styles/variables";
+@use "../../../styles/variables" as vars;
 
 .menuButton{
-  color: $importantTextColor;
+  color: vars.$importantTextColor;
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
 .visitedMenuButton{
-  color: $nonImportantTextColor;
+  color: vars.$nonImportantTextColor;
   background-color: transparent;
   border: none;
   cursor: default;

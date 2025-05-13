@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './DropDownMenuItem.scss'
+import styles from './DropDownMenuItem.module.scss'
 
 function DropDownMenuItem({children, index}) {
     return (

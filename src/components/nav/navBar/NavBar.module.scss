@@ -1,13 +1,13 @@
-@import "../../../styles/variables";
+@use "../../../styles/variables" as vars;
 
 .navBar{
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
   align-items: center;
-  background: $overlayBackgroundColor;
-  height: fit-content;
-  max-height: 10vh;
+  justify-content: space-between;
+  background: vars.$overlayBackgroundColor;
+  height: max-content;
+  width: 100%;
 }
 
 .navBar *{
@@ -15,11 +15,11 @@
 }
 
 .navBar:first-child{
-  border-right: 1px solid $primaryColor;
+  border-right: 1px solid vars.$primaryColor;
 }
 
 .navBar:last-child{
-  border-left: 1px solid $primaryColor;
+  border-left: 1px solid vars.$primaryColor;
 }
 
 .logo{
@@ -36,21 +36,28 @@
   min-width: fit-content;
   width: auto;
   max-width: 30vw;
+  gap: clamp(3rem, 8rem, 10rem);
 }
 
 .textOptions{
   gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   min-width: fit-content;
   width: auto;
   max-width: 30vw;
+  max-height: max-content;
+  height: max-content;
 }
 
 .textOptions *{
-  padding: $spacing-xxs;
+  padding: 0 vars.$spacing-lg;
 }
 
 .textOptions *:not(:last-child){
-  border-right: 1px solid $primaryColor;
+  border-right: 1px solid vars.$primaryColor;
 }
 
 .imageOptions{
@@ -61,6 +68,6 @@
 }
 
 .imageOptions *{
-  padding: $spacing-xxs;
+  padding: vars.$spacing-xxs;
 }
 
