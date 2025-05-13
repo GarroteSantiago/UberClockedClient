@@ -10,12 +10,12 @@ function StoreHardware() {
     const [products, setProducts] = useState([]);
     const isAdmin = hasPermission("admin");
 
-    const saveProducts = async () => {
-        const data = await readAllProducts();
-        setProducts(await data.json())
-    }
-
     useEffect( () => {
+        const saveProducts = async () => {
+            const response = await readAllProducts();
+            setProducts(response.data);
+        }
+
         saveProducts();
     },[])
 

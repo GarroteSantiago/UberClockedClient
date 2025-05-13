@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../Input.module.scss';
 
-function QuantityInput({value: externalValue, onChange: externalOnChange, placeholder, min = 1, max = 100, pattern = "^[1-9]\\d*$"}) {
+function QuantityInput({value: externalValue, onChange: externalOnChange, placeholder=0, min = 1, max = 100, pattern = "^[1-9]\\d*$", hidden=false}) {
     const [internalValue, setInternalValue] = React.useState(externalValue || "");
     const [isValid, setIsValid] = React.useState(true);
 
@@ -25,6 +25,7 @@ function QuantityInput({value: externalValue, onChange: externalOnChange, placeh
             onChange={handleChange}
             placeholder={placeholder || "Enter quantity"}
             required
+            hidden={hidden}
             min={min}
             max={max}
             size={10}
@@ -32,3 +33,4 @@ function QuantityInput({value: externalValue, onChange: externalOnChange, placeh
         />
     );
 }
+export default QuantityInput;
