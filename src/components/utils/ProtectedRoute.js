@@ -20,17 +20,17 @@ const ProtectedRoute = ({ children, roles = [] }) => {
                     state: { from: location }
                 });
             }
-            else if (roles.length > 0 && !roles.includes(user?.role)) {
+            else if (roles.length > 0 && !roles.includes(user?.Role.name)) {
                 navigate('/unauthorized', { replace: true });
             }
         }
-    }, [isLoading, isAuthenticated, navigate, roles, user?.role, location]);
+    }, [isLoading, isAuthenticated, navigate, roles, user?.Role.name, location]);
 
     if (isLoading) {
         return <LoadingSpinner fullPage />;
     }
 
-    if (!isAuthenticated || (roles.length > 0 && !roles.includes(user?.role))) {
+    if (!isAuthenticated || (roles.length > 0 && !roles.includes(user?.Role.name))) {
         return null;
     }
 

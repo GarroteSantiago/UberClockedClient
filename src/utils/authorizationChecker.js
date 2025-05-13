@@ -2,8 +2,9 @@ import useAuth from '../stores/auth.js';
 
 export const hasPermission = (requiredRole) => {
     const user = useAuth.getState().user;
+    console.log('user', user);
     if (user) {
-        return user.role === requiredRole;
+        return user.Role.name === requiredRole;
     } else {
         return false;
     }

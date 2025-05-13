@@ -1,0 +1,16 @@
+@use "../../styles/variables" as vars;
+
+.screen{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: vars.$baseBackgroundColor;
+  color: vars.$importantTextColor;
+  font-family: vars.$primaryFont;
+  font-size: vars.$baseFontSize;
+}
