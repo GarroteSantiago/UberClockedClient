@@ -13,6 +13,7 @@ import Profile from "./screens/Protected/User/profile/Profile.js";
 import AuthRoute from "./components/utils/AuthRoute.js";
 import Modal from "react-modal";
 import StoreLayout from "./layouts/store/StoreLayout.js";
+import Users from "./screens/Protected/Admin/users/Users.js";
 
 
 Modal.setAppElement('#root')
@@ -34,7 +35,8 @@ function App() {
                   <Route path="profile" element={<ProtectedRoute roles={["user", "admin"]}><Profile /></ProtectedRoute>} />
                   <Route path="products" element={<ProtectedRoute roles={["admin"]}><Products /></ProtectedRoute>} />
                   <Route path="components" element={<ProtectedRoute roles={["admin"]}><Components /></ProtectedRoute>} />
-                  <Route path="unauthorized" element={<></>}></Route>
+                  <Route path="users" element={<ProtectedRoute roles={["admin"]}><Users /></ProtectedRoute>} />
+                  <Route path="unauthorized" element={<p>Unauthorized</p>}></Route>
               </Route>
           </Routes>
       </BrowserRouter>
