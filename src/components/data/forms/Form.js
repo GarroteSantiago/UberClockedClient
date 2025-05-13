@@ -3,7 +3,7 @@ import styles from "./Form.module.scss";
 import {useNavigate} from "react-router-dom";
 import SubmitButton from "../../buttons/formButtons/submitButton/SubmitButton.js";
 
-function Form({ children, title, submitMethod, redirectTo }) {
+function Form({ children, title, submitMethod, redirectTo, buttonText ="Sign Up" }) {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
 
@@ -17,7 +17,11 @@ function Form({ children, title, submitMethod, redirectTo }) {
 
         try {
             await submitMethod(data);
-            navigate(redirectTo);
+            if (redirectTo === window.location.pathname) {
+                window.location.reload();
+            }else {
+                navigate(redirectTo);
+            }
         } catch (err) {
             console.error(err);
             setError(err.message || 'Submission failed.');
@@ -30,7 +34,7 @@ function Form({ children, title, submitMethod, redirectTo }) {
             {error && (<p className={styles.error}>{error}</p>)}
             <form className={styles.form} onSubmit={handleSubmit} >
                 {children}
-                <SubmitButton text="Sign Up" />
+                <SubmitButton text={buttonText} />
             </form>
         </div>
     )

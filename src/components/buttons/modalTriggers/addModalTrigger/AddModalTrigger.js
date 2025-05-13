@@ -4,13 +4,13 @@ import Modal from "react-modal";
 
 
 
-function AddModalTrigger({children, elementType = "placeholder"}) {
+function AddModalTrigger({children}) {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
         <>
             <button onClick={() => setIsOpen(true)} className={styles.textButton}>
-                Add {elementType}
+                Add
             </button>
 
             <Modal

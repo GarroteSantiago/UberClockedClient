@@ -2,8 +2,6 @@ import React from "react";
 import styles from "./ModifyModalTrigger.module.scss";
 import Modal from "react-modal";
 
-
-
 function ModifyModalTrigger({children}) {
     const [isOpen, setIsOpen] = React.useState(false);
 
@@ -17,11 +15,8 @@ function ModifyModalTrigger({children}) {
                 isOpen={isOpen}
                 onRequestClose={() => setIsOpen(false)}
                 className={styles.modal}
-                overlayClassName={styles.overlay}
             >
-
                 {children}
-
             </Modal>
         </>
     )
