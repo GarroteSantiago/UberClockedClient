@@ -15,6 +15,6 @@ export const logout = async (/*token*/) => {
 }
 
 export const checkSession = async () => {
-    const user = await client.get(`${baseUrl}/me`, {withCredentials: true});
-    useAuth.getState().login(user)
+    const response = await client.get(`${baseUrl}/me`, {withCredentials: true});
+    useAuth.getState().login(response.user)
 }

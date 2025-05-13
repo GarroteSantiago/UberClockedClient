@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './ProductCard.module.css';
 
-function ProductCard({product }) {
+function ProductCard({product, index }) {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -10,7 +10,7 @@ function ProductCard({product }) {
     };
 
     return (
-        <div onClick={handleClick} className={styles.productCard} style={{ cursor: 'pointer' }}>
+        <div key={index} onClick={handleClick} className={styles.productCard} style={{ cursor: 'pointer' }}>
             <img src={product.image} alt={product.alt} className={styles.productImage} />
             <div className={styles.productInfo}>
                 <h2 className={styles.productName}>{product.name}</h2>

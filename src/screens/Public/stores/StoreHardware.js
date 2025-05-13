@@ -9,7 +9,6 @@ import NavTextButton from "../../../components/buttons/textButtons/navTextButton
 function StoreHardware() {
     const [products, setProducts] = useState([]);
     const isAdmin = hasPermission("admin");
-    console.log('isAdmin', isAdmin);
 
     const saveProducts = async () => {
         const data = await readAllProducts();
@@ -24,7 +23,7 @@ function StoreHardware() {
         <>
             <ProductCarousel>
                 {products.map((product, index) => (
-                    <ProductCard product={product} />
+                    <ProductCard index={index} product={product} />
                 ))}
             </ProductCarousel>
             {isAdmin && (

@@ -24,7 +24,7 @@ const ProtectedRoute = ({ children, roles = [] }) => {
                 navigate('/unauthorized', { replace: true });
             }
         }
-    }, [isLoading, isAuthenticated, navigate, roles, user?.Role.name, location]);
+    }, [isLoading, isAuthenticated, navigate, roles, location]);
 
     if (isLoading) {
         return <LoadingSpinner fullPage />;

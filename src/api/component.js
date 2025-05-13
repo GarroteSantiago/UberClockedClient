@@ -5,17 +5,17 @@ export const createComponent = async (name, description) => {
 }
 
 export const readAllComponents = async () => {
-    await client.get(`/components`);
+    return await client.get(`/components`);
 }
 
 export const readComponentById = async (id) => {
-    await client.get(`/components/${id}`);
+    return await client.get(`/components/${id}`);
 }
 
 export const updateComponent = async (id, data) => {
-    await client.patch(`/components/${id}`, data);
+    return await client.patch(`/components/${id}`, data);
 }
 
 export const deleteComponent = async (id) => {
-    await client.delete(`/components/${id}`);
+    return await client.delete(`/components/${id}`);
 }

@@ -1,42 +1,36 @@
 import React, {useEffect, useState} from "react";
-import styles from "./Products.module.scss";
-import {readAllProducts} from "../../../../api/product.js";
+import styles from "./Components.module.scss"
+import {readAllComponents} from "../../../../api/component.js";
 
-function Products() {
-    const [products, setProducts] = useState([]);
+function Components() {
+    const [components, setComponents] = useState([]);
+
+
 
     useEffect( () => {
-        const saveProducts = async () => {
-            const response = await readAllProducts();
-            setProducts(response.data)
+        const saveComponents = async () => {
+            const response = await readAllComponents();
+            setComponents(response.data)
         }
 
-        saveProducts();
+        saveComponents();
     },[])
-    console.log(products)
+
     return (
         <div className={styles.table}>
             <div className={styles.tableHeader}>
                 <p className={styles.headerCell}>Id</p>
                 <p className={styles.headerCell}>Name</p>
                 <p className={styles.headerCell}>Description</p>
-                <p className={styles.headerCell}>image_url</p>
-                <p className={styles.headerCell}>image_alt</p>
-                <p className={styles.headerCell}>component_id</p>
-                <p className={styles.headerCell}>price</p>
                 <p className={styles.headerCell}>Modify</p>
                 <p className={styles.headerCell}>Delete</p>
             </div>
             <div className={styles.tableBody}>
-                {products.map((product) => (
+                {components.map((product) => (
                     <div className={styles.element} key={product.id}>
                         <p className={styles.cell}>{product.id}</p>
                         <p className={styles.cell}>{product.name}</p>
                         <p className={styles.cell}>{product.description}</p>
-                        <p className={styles.cell}>{product.image_url}</p>
-                        <p className={styles.cell}>{product.image_alt}</p>
-                        <p className={styles.cell}>{product.component_id}</p>
-                        <p className={styles.cell}>{product.price}</p>
                         <p className={styles.cell}>Modify</p>
                         <p className={styles.cell} >Delete</p>
                     </div>
@@ -45,4 +39,4 @@ function Products() {
         </div>
     )
 }
-export default Products;
+export default Components;
