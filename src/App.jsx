@@ -14,6 +14,7 @@ import AuthRoute from "./components/utils/AuthRoute.js";
 import Modal from "react-modal";
 import StoreLayout from "./layouts/store/StoreLayout.js";
 import Users from "./screens/Protected/Admin/users/Users.js";
+import ShoppingCarts from "./screens/Protected/User/shoppingCarts/ShoppingCarts.js";
 
 
 Modal.setAppElement('#root')
@@ -33,6 +34,7 @@ function App() {
                       <Route index element={<StoreHardware />} />
                   </Route>
                   <Route path="profile" element={<ProtectedRoute roles={["user", "admin"]}><Profile /></ProtectedRoute>} />
+                  <Route path="ShoppingCarts" element={<ProtectedRoute roles={["user", "admin"]}><ShoppingCarts /></ProtectedRoute>} />
                   <Route path="products" element={<ProtectedRoute roles={["admin"]}><Products /></ProtectedRoute>} />
                   <Route path="components" element={<ProtectedRoute roles={["admin"]}><Components /></ProtectedRoute>} />
                   <Route path="users" element={<ProtectedRoute roles={["admin"]}><Users /></ProtectedRoute>} />

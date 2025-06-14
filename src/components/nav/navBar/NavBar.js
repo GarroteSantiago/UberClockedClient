@@ -50,6 +50,7 @@ function NavBar() {
                     <LogoutModal>
                         <Form title={"Logout"} buttonText={"Logout"} redirectTo={"/"} submitMethod={logout}/>
                     </LogoutModal>
+                    <NavTextButton text="My shopping carts" route="/ShoppingCarts" />
                     {isAdmin && (
                         <NavTextButton text="Users" route="/users" />
                     )}
