@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './ProductCard.module.css';
+import styles from './ProductCard.module.scss';
 
 function ProductCard({product, index }) {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate(`/product/${product.Product_id}`);
+        navigate(`/product/${product.id}`);
     };
 
     return (
@@ -14,7 +14,6 @@ function ProductCard({product, index }) {
             <img src={product.image} alt={product.alt} className={styles.productImage} />
             <div className={styles.productInfo}>
                 <h2 className={styles.productName}>{product.name}</h2>
-                <p className={styles.productDescription}>{product.description}</p>
                 <p className={styles.productPrice}>{product.price}</p>
             </div>
         </div>

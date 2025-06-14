@@ -1,63 +1,49 @@
+@use "../../../styles/variables" as *;
+
 .productCard {
-    width: 200px;
-    min-width: 200px;
-    height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    font-family: Inconsolata, monospace;
-    color: #FFFFFF;
     background-color: #1a1a1a;
-    border-radius: 12px;
+    border-radius: $spacing-sm;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s ease;
-    cursor: pointer;
-    margin: 0;
-    padding: 0;
+    width: 15vw;
 }
+
 .productImage {
-    margin: 1rem;
+    margin: $spacing-sm;
     display: block;
-    width: 160px;
-    height: 160px;
+    width: clamp(5rem, 10rem, 15rem);
+    height: clamp(5rem, 10rem, 15rem);
     object-fit: cover;
     text-align: center;
-    border-radius: 8px;
-    background-color: #FFFFFF;
-    color: black;
+    border-radius: $spacing-sm;
 }
 
 .productInfo{
     display: flex;
+    width: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 80%;
 }
 
 .productName {
-    width: 100%;
-    height: fit-content;
-    display: block;
-    font-family: Inconsolata, monospace;
-    color: #FFFFFF;
-    font-weight: bold;
-    padding: 0;
     margin: 0;
-    text-align: center;
 }
 
 .productDescription {
-    font-family: Inconsolata, monospace;
-    color: #FFFFFF;
-    font-size: 1rem;
-    text-align: center;
-    height: 100px;
+    font-size: $fontSizeSm;
+    text-align: start;
+    height: $spacing-lg;
+    max-width: 90%;
     overflow-y: scroll;
     scroll-behavior: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255,255,255,0.5) rgba(255,255,255,0.1);
+    scrollbar-width: none;
+    margin: $spacing-xxs 0;
+    word-wrap: anywhere;
 }
 
 .productPrice {
@@ -66,6 +52,7 @@
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
+    margin: 0;
 }
 
 .productPrice:hover {
