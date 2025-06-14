@@ -3,7 +3,6 @@ import styles from './ProductCarousel.module.scss';
 
 function ProductCarousel({ children }) {
     const totalItems = React.Children.count(children);
-    console.log(totalItems);
     const visibleCount = 12; // 6 columns × 2 rows
     const [startIndex, setStartIndex] = useState(0);
 

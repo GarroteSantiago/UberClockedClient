@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../Input.module.scss';
 
-function TextInput({value: externalValue, onChange: externalOnChange, placeholder, minLength=0, maxLength=20, pattern = "^[A-Za-z0-9,]+$"}) {
+function TextInput({value: externalValue, onChange: externalOnChange, placeholder, minLength=0, maxLength=20, pattern = "^[A-Za-z0-9,. ]+$"}) {
     const [internalValue, setInternalValue] = React.useState(externalValue || "");
     const [isValid, setIsValid] = React.useState(true);
 

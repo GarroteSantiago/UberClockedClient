@@ -9,7 +9,7 @@ const client = axios.create({
     },
 });
 
-// Request interceptor (get Token from auth store)
+// Request interceptor (get Token from auth cards)
 client.interceptors.request.use(
     (config) => {
         const token = useAuth.getState().token;

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./StoreHardware.module.scss";
 import { readAllProducts } from "../../../api/product.js";
-import ProductCarousel from "../../../components/store/productCarousel/ProductCarousel.jsx";
-import ProductCard from "../../../components/store/productCard/ProductCard.jsx";
+import ProductCarousel from "../../../components/productCarousel/ProductCarousel.jsx";
+import ProductCard from "../../../components/cards/product/ProductCard.jsx";
 import { hasPermission } from "../../../utils/authorizationChecker.js";
 import NavTextButton from "../../../components/buttons/textButtons/navTextButton/NavTextButton.js";
 import FilterModal from "../../../components/buttons/modal/filterModal/FilterModal.js";

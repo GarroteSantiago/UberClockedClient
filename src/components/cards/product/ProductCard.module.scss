@@ -1,31 +1,25 @@
 @use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
 
 .productCard {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    border-radius: $spacing-sm;
     width: 1fr;
     height: 1fr;
     background-color: #1a1a1a;
-    border-radius: $spacing-sm;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
-    opacity: 0;
-    animation: fadeIn 0.8s ease forwards;
     margin-top: $spacing-sm;
-}
 
-.productCard:hover {
-    transform: scale(1.05);
+    @include focusCard();
+    @include fadeInCard();
 }
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
-}
-
 
 .productImage {
     margin: $spacing-sm;

@@ -1,9 +1,43 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from "./ShoppingCarts.module.scss";
+import {useState} from "react";
+import {createShoppingCart, readAllShoppingCartsOfUser} from "../../../../api/shoppingCart.js";
+import ShoppingCartCard from "../../../../components/cards/shoppingCart/ShoppingCartCard.js";
+import AddModal from "../../../../components/buttons/modal/addModal/AddModal.js";
+import Form from "../../../../components/data/forms/Form.js";
+import TextInput from "../../../../components/data/inputs/textInput/TextInput.js";
 
 function ShoppingCarts() {
+    const [shoppingCarts, SetShoppingCarts] = useState([]);
+    const [shoppingCartName, setShoppingCartName] = useState("");
+
+    useEffect(() => {
+        const saveCarts = async () => {
+            const response = await readAllShoppingCartsOfUser();
+            SetShoppingCarts(response.data);
+        };
+        saveCarts();
+    }, [])
+
     return (
-        <div></div>
+        <>
+            <h1>My Shopping Carts</h1>
+            <div className={styles.cards}>
+                {shoppingCarts.map((shoppingCart) => (
+                    <ShoppingCartCard data={shoppingCart}/>
+                ))}
+            </div>
+            <AddModal>
+                <Form
+                    title="Create new cart"
+                    redirectTo="/ShoppingCarts"
+                    buttonText="Add cart"
+                    submitMethod={() => createShoppingCart(shoppingCartName)}
+                >
+                    <TextInput value={shoppingCartName} onChange={(e) => setShoppingCartName(e.target.value)} placeholder="Cart name"/>
+                </Form>
+            </AddModal>
+        </>
     )
 }
 export default ShoppingCarts;
