@@ -86,7 +86,7 @@ function StoreHardware() {
                             max={10000}
                             step={100}
                             option={"precios"}
-                            defaultValues={[0, 10000]}
+                            defaultValues={priceRange}
                             onChange={(values) => setPriceRange(values)}
                         />
                         <RangeInput
@@ -94,7 +94,7 @@ function StoreHardware() {
                             max={5}
                             step={0.5}
                             option={"rating"}
-                            defaultValues={[0, 5]}
+                            defaultValues={ratingRange}
                             onChange={(values) => setRatingRange(values)}
                         />
 
