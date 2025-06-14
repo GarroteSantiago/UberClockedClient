@@ -14,7 +14,7 @@ function ProductCard({product, index }) {
             <img src={product.image} alt={product.alt} className={styles.productImage} />
             <div className={styles.productInfo}>
                 <h2 className={styles.productName}>{product.name}</h2>
-                <p className={styles.productPrice}>{product.price}</p>
+                <p className={styles.productPrice}>${product.price}</p>
             </div>
         </div>
     );

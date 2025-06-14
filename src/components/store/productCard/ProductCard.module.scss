@@ -9,14 +9,13 @@
     border-radius: $spacing-sm;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: transform 0.2s ease;
-    width: 15vw;
 }
 
 .productImage {
     margin: $spacing-sm;
     display: block;
-    width: clamp(5rem, 10rem, 15rem);
-    height: clamp(5rem, 10rem, 15rem);
+    width: clamp(2rem, 6rem, 8rem);
+    height: clamp(2rem, 6rem, 8rem);
     object-fit: cover;
     text-align: center;
     border-radius: $spacing-sm;
@@ -31,28 +30,17 @@
 }
 
 .productName {
+    font-size: $fontSizeMd;
     margin: 0;
-}
-
-.productDescription {
-    font-size: $fontSizeSm;
-    text-align: start;
-    height: $spacing-lg;
-    max-width: 90%;
-    overflow-y: scroll;
-    scroll-behavior: auto;
-    scrollbar-width: none;
-    margin: $spacing-xxs 0;
-    word-wrap: anywhere;
 }
 
 .productPrice {
     font-family: Inconsolata, monospace;
     color: #ffd700;
-    font-size: 2rem;
+    font-size: $fontSizeSm;
     font-weight: bold;
     text-align: center;
-    margin: 0;
+    margin: 0 0 $spacing-sm 0;
 }
 
 .productPrice:hover {
