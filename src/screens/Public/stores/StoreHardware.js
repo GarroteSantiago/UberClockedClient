@@ -10,9 +10,11 @@ import TextInput from "../../../components/data/inputs/textInput/TextInput.js";
 import Form from "../../../components/data/forms/Form.js";
 import DropDownInput from "../../../components/data/inputs/dropDownInput/DropDownInput.js";
 import RangeInput from "../../../components/data/inputs/rangeInput/RangeInput.js";
+import {readAllComponents} from "../../../api/component.js";
 
 function StoreHardware() {
     const [products, setProducts] = useState([]);
+    const [components, setComponents] = useState([]);
     const [filterComponentId, setFilterComponentId] = useState(""); // 🔹 Filtering by component_id
     const isAdmin = hasPermission("admin");
 
@@ -21,21 +23,18 @@ function StoreHardware() {
             const response = await readAllProducts();
             setProducts(response.data);
         };
-
+        const saveComponents = async () => {
+            const response = await readAllComponents();
+            setComponents(response.data);
+        }
         saveProducts();
+        saveComponents();
     }, []);
 
     const filteredProducts =
         products.filter(product =>
             filterComponentId === "" || String(product.component_id) === filterComponentId
         )
-
-    const componentsOptions = [
-        {id: "A", label: "A"},
-        {id: "B", label: "B"},
-        {id: "C", label: "C"},
-        {id: "D", label: "D"},
-    ]
 
     return (
         <>
@@ -44,7 +43,14 @@ function StoreHardware() {
                     <Form buttonText="Filter" title="Add filter">
                         <div className={styles.filterInputs}>
                             <TextInput placeholder="Filter by comma separeted keywords" />
-                            <DropDownInput options={componentsOptions} />
+                            <DropDownInput
+                                options={components.map(c => ({
+                                    id: String(c.id),
+                                    label: c.name,
+                                }))}
+                                onChange={(value) => setFilterComponentId(value)}
+                                defaultSelected={filterComponentId}
+                            />
                         </div>
                         <div className={styles.filterRanges}>
                             <RangeInput min={0} max={10000} step={10} option={"precios"}/>

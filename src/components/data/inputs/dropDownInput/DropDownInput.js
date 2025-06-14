@@ -2,7 +2,7 @@ import React, { useState, useImperativeHandle, forwardRef, useEffect } from 'rea
 import stylesInput from "../Input.module.scss";
 import styles from "./DropDownInput.module.scss";
 
-const DropDownInput = forwardRef(({ options = [], defaultSelected = null, onChange }, ref) => {
+const DropDownInput = forwardRef(({ placeholderText = "Todos", options = [], defaultSelected = null, onChange }, ref) => {
     const initialId = defaultSelected || (options.length > 0 ? options[0].id : '');
     const [selectedId, setSelectedId] = useState(initialId);
 
@@ -31,6 +31,9 @@ const DropDownInput = forwardRef(({ options = [], defaultSelected = null, onChan
 
     return (
         <select value={selectedId} onChange={handleChange} className={stylesInput.input}>
+            <option key={0} value="">
+                {placeholderText}
+            </option>
             {options.map(({ id, label }) => (
                 <option key={id} value={id} className={styles.option}>
                     {label}
