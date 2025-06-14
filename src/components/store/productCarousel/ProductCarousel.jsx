@@ -1,31 +1,43 @@
-import React, {useRef} from 'react';
-import styles from './ProductCarousel.module.css';
+import React, { useState } from 'react';
+import styles from './ProductCarousel.module.scss';
 
-function ProductCarousel({children}) {
-    const productCardWidth = 200;
-    const gap = 32;
+function ProductCarousel({ children }) {
+    const totalItems = React.Children.count(children);
+    console.log(totalItems);
+    const visibleCount = 12; // 6 columns × 2 rows
+    const [startIndex, setStartIndex] = useState(0);
 
-    const sliderRef = useRef(null);
+    const getVisibleChildren = () => {
+        return React.Children.toArray(children).slice(startIndex, startIndex + visibleCount);
+    };
 
-    const scroll = (direction) => {
-        if (sliderRef.current) {
-            sliderRef.current.scrollBy({
-                left: direction === "left" ? -productCardWidth-gap : productCardWidth+gap,
-                behavior: "smooth",
-            });
+    const scrollRight = () => {
+        if (startIndex + visibleCount < totalItems) {
+            setStartIndex(startIndex + 1);
+        } else {
+            // Optional: wrap around
+            setStartIndex(0);
         }
     };
 
+    const scrollLeft = () => {
+        if (startIndex > 0) {
+            setStartIndex(startIndex - 1);
+        } else {
+            setStartIndex(totalItems - visibleCount);
+        }
+    };
+
+
     return (
-        <>
-            <div className={styles.productCarousel}>
-                <button className={styles.scrollButton} onClick={() => scroll("left")}>◀</button>
-                <div className={styles.products} ref={sliderRef}>
-                    {children}
-                </div>
-                <button className={styles.scrollButton} onClick={() => scroll("right")}>▶</button>
+        <div className={styles.productCarousel}>
+            <button className={styles.scrollButton} onClick={scrollLeft}>◀</button>
+            <div className={styles.products}>
+                {getVisibleChildren()}
             </div>
-        </>
-    )
+            <button className={styles.scrollButton} onClick={scrollRight}>▶</button>
+        </div>
+    );
 }
+
 export default ProductCarousel;

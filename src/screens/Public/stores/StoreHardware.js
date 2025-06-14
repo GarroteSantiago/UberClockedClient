@@ -25,9 +25,10 @@ function StoreHardware() {
         saveProducts();
     }, []);
 
-    const filteredProducts = products.filter(product =>
-        filterComponentId === "" || String(product.component_id) === filterComponentId
-    );
+    const filteredProducts =
+        products.filter(product =>
+            filterComponentId === "" || String(product.component_id) === filterComponentId
+        )
 
     const componentsOptions = [
         {id: "A", label: "A"},
