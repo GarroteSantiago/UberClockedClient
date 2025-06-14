@@ -1,0 +1,11 @@
+@use "../../../styles/variables" as *;
+
+.principalButton{
+  color: $importantTextColor;
+  background-color: $buttonBackgroundColor;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: $spacing-xxs $spacing-sm;
+  border-radius: $spacing-xxs;
+}

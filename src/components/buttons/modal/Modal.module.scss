@@ -1,10 +1,20 @@
 @use "../../../styles/variables" as *;
 
 .modal{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 50%;
   left: 50%;
+  width: max-content;
+  height: max-content;
   transform: translate(-50%, -50%);
+  background: $baseBackgroundColor;
+  padding: $spacing-lg;
+  border-radius: $spacing-lg;
 }
 
-.overlay{}
+.overlay{
+}

@@ -2,10 +2,11 @@ import React from "react";
 import styles from "./FilterModal.module.scss";
 import moduleStyles from "../Modal.module.scss"
 import Modal from "react-modal";
+import PrincipalButton from "../../principal/PrincipalButton.js";
 
 
 
-function FilterModal({children}) {
+function FilterModal({children, handleReset}) {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
@@ -23,6 +24,7 @@ function FilterModal({children}) {
 
                 {children}
 
+                <PrincipalButton text={"Reset filter"} onClick={handleReset} />
             </Modal>
         </>
     )

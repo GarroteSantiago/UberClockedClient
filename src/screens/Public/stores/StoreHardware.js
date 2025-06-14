@@ -15,7 +15,10 @@ import {readAllComponents} from "../../../api/component.js";
 function StoreHardware() {
     const [products, setProducts] = useState([]);
     const [components, setComponents] = useState([]);
-    const [filterComponentId, setFilterComponentId] = useState(""); // 🔹 Filtering by component_id
+    const [filterComponentId, setFilterComponentId] = useState("");
+    const [keywords, setKeywords] = useState("");
+    const [priceRange, setPriceRange] = useState([0, 10000]);
+    const [ratingRange, setRatingRange] = useState([0, 5]);
     const isAdmin = hasPermission("admin");
 
     useEffect(() => {
@@ -31,32 +34,71 @@ function StoreHardware() {
         saveComponents();
     }, []);
 
-    const filteredProducts =
-        products.filter(product =>
-            filterComponentId === "" || String(product.component_id) === filterComponentId
-        )
+    const filteredProducts = products.filter(product => {
+        // Filtro por componente
+        const matchesComponent = filterComponentId === "" || String(product.component_id) === filterComponentId;
+
+        // Filtro por palabras clave
+        const keywordsArray = keywords.split(",").map(kw => kw.trim().toLowerCase()).filter(Boolean);
+        const matchesKeywords = keywordsArray.length === 0 || keywordsArray.some(kw =>
+            product.name.toLowerCase().includes(kw) ||
+            product.description?.toLowerCase().includes(kw)
+        );
+
+        // Filtro por precio
+        const matchesPrice = product.price >= priceRange[0] && product.price <= priceRange[1];
+
+        // Filtro por rating
+        const matchesRating = product.rating >= ratingRange[0] && product.rating <= ratingRange[1];
+
+        return matchesComponent && matchesKeywords && matchesPrice && matchesRating;
+    });
+
 
     return (
         <>
             <div className={styles.filterContainer}>
-                <FilterModal>
-                    <Form buttonText="Filter" title="Add filter">
-                        <div className={styles.filterInputs}>
-                            <TextInput placeholder="Filter by comma separeted keywords" />
-                            <DropDownInput
-                                options={components.map(c => ({
-                                    id: String(c.id),
-                                    label: c.name,
-                                }))}
-                                onChange={(value) => setFilterComponentId(value)}
-                                defaultSelected={filterComponentId}
-                            />
-                        </div>
-                        <div className={styles.filterRanges}>
-                            <RangeInput min={0} max={10000} step={10} option={"precios"}/>
-                            <RangeInput min={0} max={5} step={0.5} defaultValues={[0,5]} option={"rating"}/>
-                        </div>
-                    </Form>
+                <FilterModal handleReset={() => {
+                    setKeywords("");
+                    setFilterComponentId("");
+                    setPriceRange([0, 10000]);
+                    setRatingRange([0, 5]);
+                }}>
+                    <div className={styles.filterInputs}>
+                        <TextInput
+                            placeholder="KeyWord1,KeyWord2"
+                            value={keywords}
+                            onChange={(e) => setKeywords(e.target.value)}
+                        />
+
+                        <DropDownInput
+                            options={components.map(c => ({
+                                id: String(c.id),
+                                label: c.name,
+                            }))}
+                            onChange={(value) => setFilterComponentId(value)}
+                            defaultSelected={filterComponentId}
+                        />
+                    </div>
+                    <div className={styles.filterRanges}>
+                        <RangeInput
+                            min={0}
+                            max={10000}
+                            step={100}
+                            option={"precios"}
+                            defaultValues={[0, 10000]}
+                            onChange={(values) => setPriceRange(values)}
+                        />
+                        <RangeInput
+                            min={0}
+                            max={5}
+                            step={0.5}
+                            option={"rating"}
+                            defaultValues={[0, 5]}
+                            onChange={(values) => setRatingRange(values)}
+                        />
+
+                    </div>
                 </FilterModal>
             </div>
 
