@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Components.module.scss";
 import { createComponent, readAllComponents, updateComponent, deleteComponent } from "../../../../api/component.js";
-import DeleteModalTrigger from "../../../../components/buttons/modalTriggers/deleteModalTrigger/DeleteModalTrigger.js";
-import ModifyModalTrigger from "../../../../components/buttons/modalTriggers/modifyModalTrigger/ModifyModalTrigger.js";
+import DeleteModal from "../../../../components/buttons/modal/deleteModal/DeleteModal.js";
+import ModifyModal from "../../../../components/buttons/modal/modifyModal/ModifyModal.js";
 import Form from "../../../../components/data/forms/Form.js";
 import TextInput from "../../../../components/data/inputs/textInput/TextInput.js";
-import AddModalTrigger from "../../../../components/buttons/modalTriggers/addModalTrigger/AddModalTrigger.js";
+import AddModal from "../../../../components/buttons/modal/addModal/AddModal.js";
 
 function Components() {
     const [components, setComponents] = useState([]);
@@ -137,13 +137,13 @@ function Components() {
                             <p className={styles.cell}>{id}</p>
                             <p className={styles.cell}>{component.name}</p>
                             <p className={styles.cell}>{component.description}</p>
-                            <p className={styles.cell}><DeleteModalTrigger>{deleteForm}</DeleteModalTrigger></p>
-                            <p className={styles.cell}><ModifyModalTrigger>{modifyForm}</ModifyModalTrigger></p>
+                            <p className={styles.cell}><DeleteModal>{deleteForm}</DeleteModal></p>
+                            <p className={styles.cell}><ModifyModal>{modifyForm}</ModifyModal></p>
                         </div>
                     );
                 })}
             </div>
-            <AddModalTrigger>{addComponentForm}</AddModalTrigger>
+            <AddModal>{addComponentForm}</AddModal>
         </div>
     );
 }

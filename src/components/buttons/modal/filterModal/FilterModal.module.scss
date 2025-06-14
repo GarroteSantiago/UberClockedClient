@@ -1,0 +1,12 @@
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+
+.textButton{
+  border: none;
+  outline: none;
+  background: transparent;
+  color: $destroyTextButtonColor;
+  cursor: pointer;
+  font-family: $primaryFont;
+  font-size: $fontSizeSm;
+}

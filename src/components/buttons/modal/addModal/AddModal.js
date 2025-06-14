@@ -1,10 +1,11 @@
 import React from "react";
-import styles from "./AddModalTrigger.module.scss";
+import styles from "./AddModal.module.scss";
+import moduleStyles from "../Modal.module.scss"
 import Modal from "react-modal";
 
 
 
-function AddModalTrigger({children}) {
+function AddModal({children}) {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
@@ -16,8 +17,8 @@ function AddModalTrigger({children}) {
             <Modal
                 isOpen={isOpen}
                 onRequestClose={() => setIsOpen(false)}
-                className={styles.modal}
-                overlayClassName={styles.overlay}
+                className={moduleStyles.modal}
+                overlayClassName={moduleStyles.overlay}
             >
 
                 {children}
@@ -27,4 +28,4 @@ function AddModalTrigger({children}) {
     )
 }
 
-export default AddModalTrigger;
+export default AddModal;

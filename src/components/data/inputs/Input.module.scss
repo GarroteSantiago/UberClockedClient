@@ -1,34 +1,32 @@
-@use "../../../styles/variables" as vars;
+@use "../../../styles/variables" as *;
 
 .input{
   caret-color: transparent;
   width: 100%;
   max-width: 15rem;
-  height: 3rem;
+  height: $spacing-lg;
   border: 1px solid #FFFFFF;
-  border-radius: 14px;
-  color: vars.$fieldTextColor;
-  background-color: vars.$fieldBackgroundColor;
+  border-radius: $spacing-xxs;
+  color: #FFFFFF;
+  background-color: $fieldBackgroundColor;
   font-size: clamp(0.875rem, 0.875rem, 1rem);
   text-align: center;
-  font-family: vars.$primaryFont;
-  padding: 0 vars.$spacing-sm;
+  font-family: $primaryFont;
+  padding: 0 $spacing-sm;
   box-sizing: border-box;
 }
 
 .incorrectInput{
-  caret-color: transparent;
   width: 100%;
   max-width: 15rem;
-  height: 3rem;
-  border: 1px solid vars.$incorrectColor;
-  border-radius: 14px;
-  color: vars.$incorrectColor;
-  background-color: vars.$fieldBackgroundColor;
+  height: $spacing-lg;
+  border: 1px solid $incorrectColor;
+  color: $incorrectColor;
+  background-color: $fieldBackgroundColor;
   font-size: clamp(0.875rem, 0.875rem, 1rem);
   text-align: center;
-  font-family: vars.$primaryFont;
-  padding: 0 vars.$spacing-sm;
+  font-family: $primaryFont;
+  padding: 0 $spacing-sm;
   box-sizing: border-box;
 }
 

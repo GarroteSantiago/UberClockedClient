@@ -5,9 +5,9 @@ import {
     updateUser,
     deleteUser
 } from "../../../../api/user/user.js";
-import DeleteModalTrigger from "../../../../components/buttons/modalTriggers/deleteModalTrigger/DeleteModalTrigger.js";
-import ModifyModalTrigger from "../../../../components/buttons/modalTriggers/modifyModalTrigger/ModifyModalTrigger.js";
-import AddModalTrigger from "../../../../components/buttons/modalTriggers/addModalTrigger/AddModalTrigger.js";
+import DeleteModal from "../../../../components/buttons/modal/deleteModal/DeleteModal.js";
+import ModifyModal from "../../../../components/buttons/modal/modifyModal/ModifyModal.js";
+import AddModal from "../../../../components/buttons/modal/addModal/AddModal.js";
 import Form from "../../../../components/data/forms/Form.js";
 import TextInput from "../../../../components/data/inputs/textInput/TextInput.js";
 import EmailInput from "../../../../components/data/inputs/emailInput/EmailInput.js"; // Import EmailInput
@@ -49,18 +49,6 @@ function Users() {
         }));
     };
 
-    const handleCreate = async () => {
-        const user = formStates.newUser;
-        if (!user || !user.name || !user.email || !user.role_id) {
-            console.log("Name, Email, and Role ID are required.");
-            return;
-        }
-
-        await createUser(user);
-        const response = await readAllUsers();
-        setUsers(response.data);
-    };
-
     const handleUpdate = async (id) => {
         await updateUser(id, formStates[id]);
         const response = await readAllUsers();
@@ -72,27 +60,6 @@ function Users() {
         const response = await readAllUsers();
         setUsers(response.data);
     };
-
-    const addUserForm = (
-        <Form
-            title="Create User"
-            submitMethod={handleCreate}
-            redirectTo="/users"
-            buttonText="Create"
-        >
-            {["role_id", "name", "name_tag", "email", "ubication", "postal_code"].map(field => {
-                const InputComponent = field === "email" ? EmailInput : TextInput;
-                return (
-                    <InputComponent
-                        key={field}
-                        value={formStates.newUser?.[field] || ''}
-                        onChange={(e) => handleInputChange("newUser", field, e.target.value)}
-                        placeholder={field.replace("_", " ")}
-                    />
-                );
-            })}
-        </Form>
-    );
 
     return (
         <div className={styles.table}>
@@ -120,7 +87,7 @@ function Users() {
                             submitMethod={() => handleUpdate(id)}
                             buttonText="Modify"
                         >
-                            {["role_id", "name", "name_tag", "email", "ubication", "postal_code"].map(field => {
+                            {["role_id", "name", "ubication", "postal_code"].map(field => {
                                 const InputComponent = field === "email" ? EmailInput : TextInput;
                                 return (
                                     <InputComponent
@@ -152,8 +119,8 @@ function Users() {
                             <p className={styles.cell}>{user.email}</p>
                             <p className={styles.cell}>{user.ubication}</p>
                             <p className={styles.cell}>{user.postal_code}</p>
-                            <p className={styles.cell}><DeleteModalTrigger>{deleteForm}</DeleteModalTrigger></p>
-                            <p className={styles.cell}><ModifyModalTrigger>{modifyForm}</ModifyModalTrigger></p>
+                            <p className={styles.cell}><DeleteModal>{deleteForm}</DeleteModal></p>
+                            <p className={styles.cell}><ModifyModal>{modifyForm}</ModifyModal></p>
                         </div>
                     );
                 })}

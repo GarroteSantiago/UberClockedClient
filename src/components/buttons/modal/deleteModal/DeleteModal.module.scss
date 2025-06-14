@@ -4,15 +4,8 @@
   border: none;
   outline: none;
   background: transparent;
-  color: $createTextButtonColor;
+  color: $destroyTextButtonColor;
   cursor: pointer;
   font-family: $primaryFont;
   font-size: $fontSizeSm;
-}
-
-.modal{
-  width: fit-content;
-  position: fixed;
-  top: 20%;
-  left: 40%;
 }

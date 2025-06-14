@@ -8,12 +8,30 @@
 .filterContainer {
   margin: 1rem;
   text-align: center;
+  min-height: max-content;
 }
 
 .filterInput {
   padding: 0.5rem;
   width: 60%;
   max-width: 400px;
+  min-height: 100%;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.filterInputs{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  gap: 1rem;
+}
+
+.filterRanges{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8rem;
+  width: 100%;
 }

@@ -4,12 +4,14 @@ import NavLogo from "../../logos/navLogo/NavLogo.js";
 import DropDownMenuTextButton from "../../buttons/textButtons/dropDownTextButton/DropDownTextButton.js"
 import DropDownMenu from "../../dropDownMenu/DropDownMenu.js";
 import NavTextButton from "../../buttons/textButtons/navTextButton/NavTextButton.js";
-
-import { isAuthenticated } from "../../../utils/authorizationChecker.js";
+import {logout} from "../../../api/authentication.js";
+import {hasPermission, isAuthenticated} from "../../../utils/authorizationChecker.js";
+import LogoutModal from "../../buttons/modal/logoutModal/LogoutModal.js";
+import Form from "../../../components/data/forms/Form.js";
 
 function NavBar() {
     const isAuthed = isAuthenticated();
-    console.log("isAuthed", isAuthed);
+    const isAdmin = hasPermission('admin');
 
     const storeOptions = [
         {
@@ -45,6 +47,12 @@ function NavBar() {
             </div>
             {isAuthed && (
                 <div className={styles.imageOptions}>
+                    <LogoutModal>
+                        <Form title={"Logout"} buttonText={"Logout"} redirectTo={"/"} submitMethod={logout}/>
+                    </LogoutModal>
+                    {isAdmin && (
+                        <NavTextButton text="Users" route="/users" />
+                    )}
                 </div>
             )}
             {!isAuthed && (

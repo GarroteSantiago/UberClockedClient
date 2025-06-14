@@ -1,0 +1,11 @@
+@use "../../../../styles/variables" as *;
+
+.textButton{
+  border: none;
+  outline: none;
+  background: transparent;
+  color: $createTextButtonColor;
+  cursor: pointer;
+  font-family: $primaryFont;
+  font-size: $fontSizeSm;
+}

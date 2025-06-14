@@ -1,25 +1,31 @@
 import React from "react";
-import styles from "./ModifyModalTrigger.module.scss";
+import styles from "./DeleteModal.module.scss";
+import moduleStyles from "../Modal.module.scss"
 import Modal from "react-modal";
 
-function ModifyModalTrigger({children}) {
+
+
+function DeleteModal({children}) {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
         <>
             <button onClick={() => setIsOpen(true)} className={styles.textButton}>
-                Modify
+                Delete
             </button>
 
             <Modal
                 isOpen={isOpen}
                 onRequestClose={() => setIsOpen(false)}
-                className={styles.modal}
+                className={moduleStyles.modal}
+                overlayClassName={moduleStyles.overlay}
             >
+
                 {children}
+
             </Modal>
         </>
     )
 }
 
-export default ModifyModalTrigger;
+export default DeleteModal;

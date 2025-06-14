@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { createProduct, readAllProducts, updateProduct, deleteProduct } from "../../../../api/product.js";
-import DeleteModalTrigger from "../../../../components/buttons/modalTriggers/deleteModalTrigger/DeleteModalTrigger.js";
-import ModifyModalTrigger from "../../../../components/buttons/modalTriggers/modifyModalTrigger/ModifyModalTrigger.js";
+import DeleteModal from "../../../../components/buttons/modal/deleteModal/DeleteModal.js";
+import ModifyModal from "../../../../components/buttons/modal/modifyModal/ModifyModal.js";
 import Form from "../../../../components/data/forms/Form.js";
 import TextInput from "../../../../components/data/inputs/textInput/TextInput.js";
-import AddModalTrigger from "../../../../components/buttons/modalTriggers/addModalTrigger/AddModalTrigger.js";
+import AddModal from "../../../../components/buttons/modal/addModal/AddModal.js";
 import styles from "./Products.module.scss";
+import QuantityInput from "../../../../components/data/inputs/numberInput/NumberInput.js";
 
 function Products() {
     const [products, setProducts] = useState([]);
@@ -101,12 +102,12 @@ function Products() {
                 onChange={(e) => handleInputChange('newProduct', 'image_alt', e.target.value)}
                 placeholder="Image Alt"
             />
-            <TextInput
+            <QuantityInput
                 value={formStates.newProduct?.component_id || ''}
                 onChange={(e) => handleInputChange('newProduct', 'component_id', e.target.value)}
                 placeholder="Component ID"
             />
-            <TextInput
+            <QuantityInput
                 value={formStates.newProduct?.price || ''}
                 onChange={(e) => handleInputChange('newProduct', 'price', e.target.value)}
                 placeholder="Price"
@@ -161,12 +162,12 @@ function Products() {
                                 onChange={(e) => handleInputChange(id, 'image_alt', e.target.value)}
                                 placeholder="New image alt"
                             />
-                            <TextInput
+                            <QuantityInput
                                 value={form.component_id}
                                 onChange={(e) => handleInputChange(id, 'component_id', e.target.value)}
                                 placeholder="New component ID"
                             />
-                            <TextInput
+                            <QuantityInput
                                 value={form.price}
                                 onChange={(e) => handleInputChange(id, 'price', e.target.value)}
                                 placeholder="New price"
@@ -192,13 +193,13 @@ function Products() {
                             <p className={styles.cell}>{product.image_url}</p>
                             <p className={styles.cell}>{product.image_alt}</p>
                             <p className={styles.cell}>{product.price}</p>
-                            <p className={styles.cell}><DeleteModalTrigger>{deleteForm}</DeleteModalTrigger></p>
-                            <p className={styles.cell}><ModifyModalTrigger>{modifyForm}</ModifyModalTrigger></p>
+                            <p className={styles.cell}><DeleteModal>{deleteForm}</DeleteModal></p>
+                            <p className={styles.cell}><ModifyModal>{modifyForm}</ModifyModal></p>
                         </div>
                     );
                 })}
             </div>
-            <AddModalTrigger>{addProductForm}</AddModalTrigger>
+            <AddModal>{addProductForm}</AddModal>
         </div>
     );
 }
