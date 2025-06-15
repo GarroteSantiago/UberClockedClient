@@ -106,13 +106,6 @@ function StoreHardware() {
                     <ProductCard key={product.id} product={product} />
                 ))}
             </ProductCarousel>
-
-            {isAdmin && (
-                <div className={styles.adminOptions}>
-                    <NavTextButton text="Add Product" route="/products" />
-                    <NavTextButton text="Add Component" route="/components" />
-                </div>
-            )}
         </>
     );
 }
