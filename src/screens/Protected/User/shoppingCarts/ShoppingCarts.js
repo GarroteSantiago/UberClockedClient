@@ -5,7 +5,7 @@ import {createShoppingCart, readAllShoppingCartsOfUser} from "../../../../api/sh
 import ShoppingCartCard from "../../../../components/cards/shoppingCart/ShoppingCartCard.js";
 import AddModal from "../../../../components/buttons/modal/addModal/AddModal.js";
 import Form from "../../../../components/data/forms/Form.js";
-import TextInput from "../../../../components/data/inputs/textInput/TextInput.js";
+import TextInput from "../../../../components/data/inputs/text/TextInput.js";
 
 function ShoppingCarts() {
     const [shoppingCarts, SetShoppingCarts] = useState([]);

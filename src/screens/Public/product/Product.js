@@ -8,8 +8,9 @@ import {readComponentById} from "../../../api/component.js";
 import ProductCard from "../../../components/cards/product/ProductCard.jsx";
 import AddModal from "../../../components/buttons/modal/addModal/AddModal.js";
 import Form from "../../../components/data/forms/Form.js";
-import DropDownInput from "../../../components/data/inputs/dropDownInput/DropDownInput.js";
-import NumberInput from "../../../components/data/inputs/numberInput/NumberInput.js";
+import DropDownInput from "../../../components/data/inputs/dropDown/DropDownInput.js";
+import NumberInput from "../../../components/data/inputs/quantity/QuantityInput.js";
+import QuantityInput from "../../../components/data/inputs/quantity/QuantityInput.js";
 
 function Product() {
     const [product, setProduct] = React.useState({});
@@ -74,7 +75,7 @@ function Product() {
                                 onChange={(value) => setCart(value)}
 
                             />
-                            <NumberInput value={amount} min={1} onChange={(e)=>setAmount(e.target.value)}  />
+                            <QuantityInput value={amount} min={1} onChange={(e)=>setAmount(e.target.value)}  />
                         </Form>
                     </AddModal>
                 </div>

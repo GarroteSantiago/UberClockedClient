@@ -9,8 +9,8 @@ import DeleteModal from "../../../../components/buttons/modal/deleteModal/Delete
 import ModifyModal from "../../../../components/buttons/modal/modifyModal/ModifyModal.js";
 import AddModal from "../../../../components/buttons/modal/addModal/AddModal.js";
 import Form from "../../../../components/data/forms/Form.js";
-import TextInput from "../../../../components/data/inputs/textInput/TextInput.js";
-import EmailInput from "../../../../components/data/inputs/emailInput/EmailInput.js"; // Import EmailInput
+import TextInput from "../../../../components/data/inputs/text/TextInput.js";
+import EmailInput from "../../../../components/data/inputs/email/EmailInput.js"; // Import EmailInput
 import styles from "./Users.module.scss";
 
 function Users() {

@@ -4,7 +4,7 @@ import { createComponent, readAllComponents, updateComponent, deleteComponent } 
 import DeleteModal from "../../../../components/buttons/modal/deleteModal/DeleteModal.js";
 import ModifyModal from "../../../../components/buttons/modal/modifyModal/ModifyModal.js";
 import Form from "../../../../components/data/forms/Form.js";
-import TextInput from "../../../../components/data/inputs/textInput/TextInput.js";
+import TextInput from "../../../../components/data/inputs/text/TextInput.js";
 import AddModal from "../../../../components/buttons/modal/addModal/AddModal.js";
 
 function Components() {

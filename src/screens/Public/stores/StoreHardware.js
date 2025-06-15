@@ -6,10 +6,10 @@ import ProductCard from "../../../components/cards/product/ProductCard.jsx";
 import { hasPermission } from "../../../utils/authorizationChecker.js";
 import NavTextButton from "../../../components/buttons/textButtons/navTextButton/NavTextButton.js";
 import FilterModal from "../../../components/buttons/modal/filterModal/FilterModal.js";
-import TextInput from "../../../components/data/inputs/textInput/TextInput.js";
+import TextInput from "../../../components/data/inputs/text/TextInput.js";
 import Form from "../../../components/data/forms/Form.js";
-import DropDownInput from "../../../components/data/inputs/dropDownInput/DropDownInput.js";
-import RangeInput from "../../../components/data/inputs/rangeInput/RangeInput.js";
+import DropDownInput from "../../../components/data/inputs/dropDown/DropDownInput.js";
+import RangeInput from "../../../components/data/inputs/range/RangeInput.js";
 import {readAllComponents} from "../../../api/component.js";
 
 function StoreHardware() {

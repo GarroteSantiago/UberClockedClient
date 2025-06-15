@@ -23,7 +23,7 @@ export const readAllProductsInShoppingCart = async (cart_id) => {
 }
 
 export const updateCart = async (id, data) => {
-    return await client.put(`${baseUrl }/${id}`, data);
+    return await client.patch(`${baseUrl }/${id}`, data);
 }
 
 export const deleteCart = async (id) => {

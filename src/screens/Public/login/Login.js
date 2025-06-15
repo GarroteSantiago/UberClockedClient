@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {login} from "../../../api/authentication.js";
 import Form from "../../../components/data/forms/Form.js";
-import EmailInput from "../../../components/data/inputs/emailInput/EmailInput.js";
-import PasswordInput from "../../../components/data/inputs/passwordInput/PasswordInput.js";
+import EmailInput from "../../../components/data/inputs/email/EmailInput.js";
+import PasswordInput from "../../../components/data/inputs/password/PasswordInput.js";
 import NavTextButton from "../../../components/buttons/textButtons/navTextButton/NavTextButton.js";
 function Login() {
     const [email, setEmail] = useState("");

@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import Form from "../../../components/data/forms/Form.js";
-import TextInput from "../../../components/data/inputs/textInput/TextInput.js";
-import EmailInput from "../../../components/data/inputs/emailInput/EmailInput.js";
-import PasswordInput from "../../../components/data/inputs/passwordInput/PasswordInput.js";
+import TextInput from "../../../components/data/inputs/text/TextInput.js";
+import EmailInput from "../../../components/data/inputs/email/EmailInput.js";
+import PasswordInput from "../../../components/data/inputs/password/PasswordInput.js";
 import {createUser} from "../../../api/user/user.js";
 import NavTextButton from "../../../components/buttons/textButtons/navTextButton/NavTextButton.js";
 
