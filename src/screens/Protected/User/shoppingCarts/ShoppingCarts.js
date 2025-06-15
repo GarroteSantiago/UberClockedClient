@@ -20,11 +20,11 @@ function ShoppingCarts() {
     }, [])
 
     return (
-        <>
-            <h1>My Shopping Carts</h1>
+        <div className={styles.screen}>
+            <h1 className={styles.title}>My Shopping Carts</h1>
             <div className={styles.cards}>
                 {shoppingCarts.map((shoppingCart) => (
-                    <ShoppingCartCard data={shoppingCart}/>
+                    <ShoppingCartCard shoppingCart={shoppingCart}/>
                 ))}
             </div>
             <AddModal>
@@ -37,7 +37,7 @@ function ShoppingCarts() {
                     <TextInput value={shoppingCartName} onChange={(e) => setShoppingCartName(e.target.value)} placeholder="Cart name"/>
                 </Form>
             </AddModal>
-        </>
+        </div>
     )
 }
 export default ShoppingCarts;

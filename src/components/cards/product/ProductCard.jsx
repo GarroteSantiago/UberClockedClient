@@ -10,7 +10,7 @@ function ProductCard({product, index }) {
     };
 
     return (
-        <div key={index} onClick={handleClick} className={styles.productCard} style={{ cursor: 'pointer' }}>
+        <div key={index} onClick={handleClick} className={styles.card} style={{ cursor: 'pointer' }}>
             <img src={product.image} alt={product.alt} className={styles.productImage} />
             <div className={styles.productInfo}>
                 <h2 className={styles.productName}>{product.name}</h2>

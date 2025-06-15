@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./StoreHardware.module.scss";
 import { readAllProducts } from "../../../api/product.js";
-import ProductCarousel from "../../../components/productCarousel/ProductCarousel.jsx";
+import ProductCarousel from "../../../components/carousel/product/ProductCarousel.jsx";
 import ProductCard from "../../../components/cards/product/ProductCard.jsx";
 import { hasPermission } from "../../../utils/authorizationChecker.js";
 import NavTextButton from "../../../components/buttons/textButtons/navTextButton/NavTextButton.js";

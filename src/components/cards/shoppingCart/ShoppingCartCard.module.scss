@@ -1,0 +1,41 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: max-content;
+  height: auto;
+  background-color: $buttonBackgroundColor;
+  border-radius: $spacing-sm;
+  margin: 0;
+  cursor: pointer;
+  @include fadeInCard;
+  @include focusCard;
+}
+
+
+.info{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: start;
+  margin: 0 0 0 $spacing-sm;
+}
+
+.name{
+  font-size: $fontSizeMd;
+}
+
+.date{
+  font-size: $fontSizeSm;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

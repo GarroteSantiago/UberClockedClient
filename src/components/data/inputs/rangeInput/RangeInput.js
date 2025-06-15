@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Range } from 'react-range';
 import styles from './RangeInput.module.scss';
-import inputStyles from '../Input.module.scss';
 
 
 function RangeInput({ min, max, step, option, defaultValues = [min, max], onChange }) {
