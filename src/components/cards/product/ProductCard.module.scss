@@ -16,13 +16,14 @@
     background-color: #1a1a1a;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     margin-top: $spacing-sm;
-
+    text-decoration: none;
+    color: $importantTextColor;
     @include focusCard();
     @include fadeInCard();
 }
 .card:hover .card:visited{
     text-decoration: none;
-    color: $primaryColor;
+    color: $importantTextColor;
 }
 .productImage {
     margin: $spacing-sm;

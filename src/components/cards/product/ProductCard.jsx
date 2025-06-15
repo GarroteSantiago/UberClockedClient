@@ -1,8 +1,8 @@
 import React from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import styles from './ProductCard.module.scss';
 
-function ProductCard({product, index }) {
+function ProductCard({product}) {
     return (
         <Link to={`/Product/${product.id}`} className={styles.card} key={product.id}>
             <img src={product.image} alt={product.alt} className={styles.productImage} />

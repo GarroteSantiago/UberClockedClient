@@ -52,9 +52,6 @@ function ShoppingCart() {
     return (
         <div className={styles.layout}>
             <h1 className={styles.name}>{shoppingCart.name}</h1>
-            {products.length === 0 &&
-                <p>No products</p>
-            }
             <div className={styles.products}>
                 <div className={styles.product}>
                     <p>Name</p>
@@ -63,6 +60,9 @@ function ShoppingCart() {
                     <p>Remove</p>
                     <p>Modify</p>
                 </div>
+                {products.length === 0 &&
+                    <p>No products in this cart</p>
+                }
                 {products.length > 0 &&
                     products.map((product) => (
                         <div key={product.id} className={styles.product}>

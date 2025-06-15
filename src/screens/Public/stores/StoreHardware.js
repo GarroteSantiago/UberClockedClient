@@ -7,7 +7,6 @@ import { hasPermission } from "../../../utils/authorizationChecker.js";
 import NavTextButton from "../../../components/buttons/textButtons/navTextButton/NavTextButton.js";
 import FilterModal from "../../../components/buttons/modal/filterModal/FilterModal.js";
 import TextInput from "../../../components/data/inputs/text/TextInput.js";
-import Form from "../../../components/data/forms/Form.js";
 import DropDownInput from "../../../components/data/inputs/dropDown/DropDownInput.js";
 import RangeInput from "../../../components/data/inputs/range/RangeInput.js";
 import {readAllComponents} from "../../../api/component.js";
@@ -104,7 +103,7 @@ function StoreHardware() {
 
             <ProductCarousel>
                 {filteredProducts.map((product, index) => (
-                    <ProductCard key={product.id} index={index} product={product} />
+                    <ProductCard key={product.id} product={product} />
                 ))}
             </ProductCarousel>
 
