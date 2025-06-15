@@ -16,11 +16,11 @@ function NavBar() {
     const storeOptions = [
         {
             text: "PC",
-            route: "/cards/pc",
+            route: "/store/pc",
         },
         {
             text: "Server",
-            route: "/cards/server",
+            route: "/store/server",
         }
     ]
     const buildOptions = [

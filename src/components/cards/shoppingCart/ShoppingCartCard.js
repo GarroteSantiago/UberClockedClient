@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 function ShoppingCartCard({shoppingCart}) {
     return (
         <div className={styles.card} key={shoppingCart.id}>
-            <Link to={`/shoppingCart/${shoppingCart.id}`} className={styles.info}>
+            <Link to={`/ShoppingCarts/${shoppingCart.id}`} className={styles.info}>
                 <div>
                     <h3 className={styles.name}>{shoppingCart.name}</h3>
                     <p className={styles.date}>Last modification: {(shoppingCart.updatedAt).toString().slice(0,10)}</p>
