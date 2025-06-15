@@ -4,6 +4,10 @@ export const createUser = async (role_id, name_tag, email, password) => {
     return await client.post('/users', {role_id, name_tag, email, password})
 }
 
+export const readMe = async () => {
+    return await client.get('/users/me')
+}
+
 export const readAllUsers = async () => {
     return  await client.get('/users')
 }

@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import {useNavigate, useLocation, Outlet} from 'react-router-dom';
 import useAuth from '../../stores/auth.js';
 import LoadingSpinner from '../../components/utils/LoadingSpinner'; // Your custom loading component
 
-const ProtectedRoute = ({ children, roles = [] }) => {
+const ProtectedRoute = ({roles = [] }) => {
     const { isAuthenticated, isLoading, initialize, user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
@@ -24,7 +24,7 @@ const ProtectedRoute = ({ children, roles = [] }) => {
                 navigate('/unauthorized', { replace: true });
             }
         }
-    }, [isLoading, isAuthenticated, navigate, roles, location]);
+    }, [isLoading, isAuthenticated, navigate, roles, location, user?.Role.name]);
 
     if (isLoading) {
         return <LoadingSpinner fullPage />;
@@ -34,7 +34,7 @@ const ProtectedRoute = ({ children, roles = [] }) => {
         return null;
     }
 
-    return children;
+    return <Outlet/>;
 };
 
 export default ProtectedRoute;
