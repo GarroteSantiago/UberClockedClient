@@ -8,16 +8,19 @@ import Form from "../../../../components/data/forms/Form.js";
 import TextInput from "../../../../components/data/inputs/text/TextInput.js";
 
 function ShoppingCarts() {
-    const [shoppingCarts, SetShoppingCarts] = useState([]);
+    const [shoppingCarts, setShoppingCarts] = useState([]);
     const [shoppingCartName, setShoppingCartName] = useState("");
 
     useEffect(() => {
         const saveCarts = async () => {
             const response = await readAllShoppingCartsOfUser();
-            SetShoppingCarts(response.data);
+            console.log(response.data);
+            const activeCarts = response.data.filter(cart => cart.is_active);
+            setShoppingCarts(activeCarts);
         };
         saveCarts();
-    }, [])
+    }, []);
+
 
     return (
         <div className={styles.screen}>

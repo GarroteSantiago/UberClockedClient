@@ -12,6 +12,7 @@ import Form from "../../../../components/data/forms/Form.js";
 import ModifyModal from "../../../../components/buttons/modal/modifyModal/ModifyModal.js";
 import QuantityInput from "../../../../components/data/inputs/quantity/QuantityInput.js";
 import TextInput from "../../../../components/data/inputs/text/TextInput.js";
+import PrincipalButton from "../../../../components/buttons/principal/PrincipalButton.js";
 
 function ShoppingCart() {
     const [newAmount, setNewAmount] = React.useState("");
@@ -93,11 +94,22 @@ function ShoppingCart() {
                                 </Form>
                             </ModifyModal>
                         </div>
+
                     ))
                 }
             </div>
-            <Link className={styles.actions} to={`/home`}>Buy products</Link>
-            <ModifyModal>
+            {products.length > 0 &&
+                <ModifyModal triggerText={"Buy cart"}>
+                    <Form
+                        buttonText={"Buy"}
+                        title={"Buy cart"}
+                        submitMethod={() => modifyCart()}
+                        redirectTo={location.pathname}
+                    >
+                    </Form>
+                </ModifyModal>
+            }
+            <ModifyModal triggerText={"Modify cart name"}>
                 <Form
                     buttonText={"Modify cart"}
                     title={"Modify cart name"}
@@ -107,6 +119,7 @@ function ShoppingCart() {
                     <TextInput value={newName} onChange={(e) => setNewName(e.target.value)} />
                 </Form>
             </ModifyModal>
+            <Link className={styles.actions} to={`/home`}>Continue shopping</Link>
         </div>
     )
 }

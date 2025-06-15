@@ -2,13 +2,13 @@ import React from "react";
 import styles from "./ModifyModal.module.scss";
 import Modal from "react-modal";
 
-function ModifyModal({children}) {
+function ModifyModal({children, triggerText = "Modify"}) {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
         <>
             <button onClick={() => setIsOpen(true)} className={styles.textButton}>
-                Modify
+                {triggerText}
             </button>
 
             <Modal
