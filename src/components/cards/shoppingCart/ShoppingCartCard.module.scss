@@ -10,7 +10,7 @@
   background-color: $buttonBackgroundColor;
   border-radius: $spacing-sm;
   margin: 0;
-  cursor: pointer;
+
   @include fadeInCard;
   @include focusCard;
 }
@@ -23,6 +23,13 @@
   justify-content: center;
   align-items: start;
   margin: 0 0 0 $spacing-sm;
+  cursor: pointer;
+  color: $importantTextColor;
+  text-decoration: none;
+}
+.info:hover .info:visited {
+  color: $importantTextColor;
+  text-decoration: none;
 }
 
 .name{
