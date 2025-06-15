@@ -15,8 +15,7 @@ function ShoppingCarts() {
         const saveCarts = async () => {
             const response = await readAllShoppingCartsOfUser();
             console.log(response.data);
-            const activeCarts = response.data.filter(cart => cart.is_active);
-            setShoppingCarts(activeCarts);
+            setShoppingCarts(response.data);
         };
         saveCarts();
     }, []);

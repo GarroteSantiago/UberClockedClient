@@ -4,7 +4,7 @@ export const createOrder = (data) => {
     const formData = new FormData();
     formData.append("cart_id", data.cart_id);
     formData.append("payment_method", data.payment_method);
-
+    console.log(formData);
     return client.post("/orders", formData, {
         headers: {
             "Content-Type": "multipart/form-data"

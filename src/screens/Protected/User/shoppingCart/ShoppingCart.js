@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Link, useLocation, useParams} from "react-router-dom";
+import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
 import styles from "./ShoppingCart.module.scss";
 import {
     createProductInShoppingCart,
@@ -13,8 +13,10 @@ import ModifyModal from "../../../../components/buttons/modal/modifyModal/Modify
 import QuantityInput from "../../../../components/data/inputs/quantity/QuantityInput.js";
 import TextInput from "../../../../components/data/inputs/text/TextInput.js";
 import PrincipalButton from "../../../../components/buttons/principal/PrincipalButton.js";
+import {createOrder} from "../../../../api/order/orders.js";
 
 function ShoppingCart() {
+    const navigate = useNavigate();
     const [newAmount, setNewAmount] = React.useState("");
     const [newName, setNewName] = React.useState("");
     const [products, setProducts] = useState([]);
@@ -35,6 +37,12 @@ function ShoppingCart() {
         getProducts();
     }, [id]);
 
+    useEffect(() => {
+        if (shoppingCart && shoppingCart.is_active === false) {
+            navigate("/ShoppingCarts");
+        }
+    }, [shoppingCart, navigate])
+
     const deleteProduct = async (product_id) => {
         const response = await deleteProductInShoppingCart(id, product_id);
         console.log(response);
@@ -48,6 +56,10 @@ function ShoppingCart() {
         console.log(deleteResponse);
         const createResponse = await createProductInShoppingCart(id, product_id, newAmount);
         console.log(createResponse);
+    }
+    const buyCart = async () => {
+        const response = await createOrder({cart_id: id, payment_method: "Dummy"});
+        console.log(response);
     }
 
     return (
@@ -103,7 +115,7 @@ function ShoppingCart() {
                     <Form
                         buttonText={"Buy"}
                         title={"Buy cart"}
-                        submitMethod={() => modifyCart()}
+                        submitMethod={() => buyCart()}
                         redirectTo={location.pathname}
                     >
                     </Form>
