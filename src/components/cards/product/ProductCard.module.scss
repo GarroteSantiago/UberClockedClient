@@ -20,7 +20,10 @@
     @include focusCard();
     @include fadeInCard();
 }
-
+.card:hover .card:visited{
+    text-decoration: none;
+    color: $primaryColor;
+}
 .productImage {
     margin: $spacing-sm;
     display: block;

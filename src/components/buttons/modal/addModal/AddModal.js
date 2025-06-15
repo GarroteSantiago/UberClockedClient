@@ -5,13 +5,13 @@ import Modal from "react-modal";
 
 
 
-function AddModal({children}) {
+function AddModal({children, text="Add"}) {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
         <>
             <button onClick={() => setIsOpen(true)} className={styles.textButton}>
-                Add
+                {text}
             </button>
 
             <Modal

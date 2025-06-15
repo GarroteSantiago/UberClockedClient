@@ -16,6 +16,7 @@ import StoreLayout from "./layouts/store/StoreLayout.js";
 import Users from "./screens/Protected/Admin/users/Users.js";
 import ShoppingCarts from "./screens/Protected/User/shoppingCarts/ShoppingCarts.js";
 import ShoppingCart from "./screens/Protected/User/shoppingCart/ShoppingCart.js";
+import Product from "./screens/Public/product/Product.js";
 
 
 Modal.setAppElement('#root')
@@ -34,6 +35,7 @@ function App() {
                   <Route path="store/pc" element={<StoreLayout />}>
                       <Route index element={<StoreHardware />} />
                   </Route>
+                  <Route path="Product/:id" element={<ProtectedRoute roles={["user", "admin"]}><Product /></ProtectedRoute>} />
                   <Route path="profile" element={<ProtectedRoute roles={["user", "admin"]}><Profile /></ProtectedRoute>} />
                   <Route path="ShoppingCarts" element={<ProtectedRoute roles={["user", "admin"]}><ShoppingCarts /></ProtectedRoute>} />
                   <Route path="ShoppingCarts/:id" element={<ProtectedRoute roles={["user", "admin"]}><ShoppingCart /></ProtectedRoute>} />

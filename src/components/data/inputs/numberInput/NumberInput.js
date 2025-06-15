@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../Input.module.scss';
 
-function QuantityInput({value: externalValue, onChange: externalOnChange, placeholder=0, min = 1, pattern = "^[1-9]\\d*$", hidden=false}) {
+function QuantityInput({value: externalValue, onChange: externalOnChange, placeholder=1, min = 1, pattern = "^[1-9]\\d*$", hidden=false}) {
     const [internalValue, setInternalValue] = React.useState(externalValue || "");
     const [isValid, setIsValid] = React.useState(true);
 

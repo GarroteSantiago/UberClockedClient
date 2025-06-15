@@ -1,0 +1,117 @@
+@use "../../../styles/variables" as *;
+
+.layout{
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.principal{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  flex: 2;
+}
+
+.presentation{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+
+.title{
+  font-size: $fontSizeLg;
+  color: $importantTextColor;
+  margin: 0;
+  padding: 0;
+}
+
+.image{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $importantTextColor;
+  width: 10rem;
+  height: 10rem;
+  margin: 0;
+  padding: 0;
+}
+
+.information{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  flex: 2;
+}
+
+.information *{
+  flex: 1;
+}
+
+.description{
+  flex: 3;
+  width: 60%;
+  margin: 0;
+  padding: 0;
+}
+
+.data{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.data *{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  width: max-content;
+  height: 100%;
+  color: #ffd700;
+  flex: 1;
+}
+
+.secondary{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  flex: 1;
+}
+
+.otherOptions{
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+  gap: $spacing-lg;
+  height: 100%;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+h2{
+  margin: $spacing-lg 0 0 0;
+  padding: 0;
+}
