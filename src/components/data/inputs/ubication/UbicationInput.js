@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styles from "./UbicationInput.module.scss";
 import DropDownInput from "../dropDown/DropDownInput.js";
 
 const UbicationInput = ({ countries, provinces, localities, onChange }) => {
@@ -30,7 +31,7 @@ const UbicationInput = ({ countries, provinces, localities, onChange }) => {
     }, [selectedCountry, selectedProvince, selectedLocality]);
 
     return (
-        <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+        <div className={styles.ubicationInput}>
             <DropDownInput
                 placeholderText="Country"
                 options={countries.map(c => ({
