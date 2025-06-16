@@ -17,7 +17,6 @@ function Orders() {
     useLayoutEffect(() => {
         const getOrders = async () => {
             const response = await readAllOrders();
-            console.log(response);
             setOrders(response.data);
             orders.sort((a, b) => a.created_at.slice(0,10) - a.created_at.slice(0,10) - b.created_at.slice(0,10));
         }
@@ -26,7 +25,6 @@ function Orders() {
 
     const sentOrder = async (orderId, data) => {
         const response = await updateOrder(orderId, data);
-        console.log(response);
     }
 
     return (

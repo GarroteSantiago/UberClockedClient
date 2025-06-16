@@ -10,7 +10,6 @@ function AdminPanel() {
         const readUserData = async () => {
             const response = await readMe()
             setAdmin(response.data)
-            console.log(response)
         }
         readUserData();
     },[])

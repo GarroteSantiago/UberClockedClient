@@ -14,7 +14,6 @@ function ShoppingCarts() {
     useEffect(() => {
         const saveCarts = async () => {
             const response = await readAllShoppingCartsOfUser();
-            console.log(response.data);
             setShoppingCarts(response.data);
         };
         saveCarts();

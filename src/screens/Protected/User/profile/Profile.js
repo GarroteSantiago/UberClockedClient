@@ -5,13 +5,20 @@ import EmailInput from "../../../../components/data/inputs/email/EmailInput.js";
 import TextInput from "../../../../components/data/inputs/text/TextInput.js";
 import {readMe, updateMe} from "../../../../api/user/user.js";
 import ModifyModal from "../../../../components/buttons/modal/modifyModal/ModifyModal.js";
+import UbicationInput from "../../../../components/data/inputs/ubication/UbicationInput.js";
+import {readAllCountries} from "../../../../api/ubication/country.js";
+import {readAllProvinces} from "../../../../api/ubication/province.js";
+import {readAllLocalities} from "../../../../api/ubication/locality.js";
 
 function Profile(){
     const [user, setUser] = useState({});
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [nameTag, setNameTag] = useState("");
-    const [ubication, setUbication] = useState("");
+    const [ubication, setUbication] = useState({country_id:"", province_id:"", locality_id:""});
+    const [countries, setCountries] = useState([]);
+    const [provinces, setProvinces] = useState([]);
+    const [localities, setLocalities] = useState({});
     const [postalCode, setPostalCode] = useState("");
 
     useEffect(()=>{
@@ -24,17 +31,32 @@ function Profile(){
             setNameTag(newUser.name_tag);
             setUbication(newUser.ubication ? newUser.ubication : "No ubication defined");
             setPostalCode(newUser.postal_code ? newUser.postal_code : "No postal code defined");
-            console.log(newUser);
+        }
+        const getCountries = async () => {
+            const response = await readAllCountries();
+            setCountries(response.data);
+        }
+        const getProvinces = async () => {
+            const response = await readAllProvinces();
+            setProvinces(response.data);
+        }
+        const getLocalities = async () => {
+            const response = await readAllLocalities();
+            setLocalities(response.data);
         }
         getMe();
+        getCountries();
+        getProvinces();
+        getLocalities();
     }, [])
 
     const updateProfile = async () => {
-        const response = await updateMe(
-            user.id,
+        await updateMe(
             {email: email, name: name, name_tag: nameTag, ubication: ubication, postal_code: postalCode},
         );
-        console.log(response);
+    }
+    const handleUbicationChange = (newUbication) => {
+        setUbication(newUbication);
     }
 
     return (
@@ -96,10 +118,11 @@ function Profile(){
                                 submitMethod={()=>updateProfile()}
                                 redirectTo={"/profile"}
                             >
-                                <TextInput
-                                    placeholder={"Ubication"}
-                                    value={ubication}
-                                    onChange={(e) => setUbication(e.target.value)}
+                                <UbicationInput
+                                    countries={countries}
+                                    provinces={provinces}
+                                    localities={localities}
+                                    onChange={(e) => handleUbicationChange(e)}
                                 />
                             </Form>
                         </ModifyModal>

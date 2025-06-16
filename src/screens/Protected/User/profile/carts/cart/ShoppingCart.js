@@ -44,22 +44,17 @@ function ShoppingCart() {
     }, [shoppingCart, navigate])
 
     const deleteProduct = async (product_id) => {
-        const response = await deleteProductInShoppingCart(id, product_id);
-        console.log(response);
+        await deleteProductInShoppingCart(id, product_id);
     }
     const modifyCart = async () => {
-        const response = await updateCart(id, {name:newName});
-        console.log(response);
+        await updateCart(id, {name:newName});
     }
     const modifyProductAmount = async (product_id) => {
-        const deleteResponse = deleteProduct(product_id);
-        console.log(deleteResponse);
-        const createResponse = await createProductInShoppingCart(id, product_id, newAmount);
-        console.log(createResponse);
+        deleteProduct(product_id);
+        await createProductInShoppingCart(id, product_id, newAmount);
     }
     const buyCart = async () => {
-        const response = await createOrder({cart_id: id, payment_method: "Dummy"});
-        console.log(response);
+        await createOrder({cart_id: id, payment_method: "Dummy"});
     }
 
     return (
