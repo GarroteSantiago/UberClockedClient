@@ -31,7 +31,7 @@ function ShoppingCarts() {
             <AddModal>
                 <Form
                     title="Create new cart"
-                    redirectTo="/ShoppingCarts"
+                    redirectTo="/profile/shoppingCarts"
                     buttonText="Add cart"
                     submitMethod={() => createShoppingCart(shoppingCartName)}
                 >

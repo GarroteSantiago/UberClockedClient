@@ -39,7 +39,7 @@ function ShoppingCart() {
 
     useEffect(() => {
         if (shoppingCart && shoppingCart.is_active === false) {
-            navigate("/ShoppingCarts");
+            navigate("/profile/shoppingCarts");
         }
     }, [shoppingCart, navigate])
 
