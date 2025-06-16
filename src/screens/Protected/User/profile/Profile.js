@@ -11,15 +11,16 @@ import {readAllProvinces} from "../../../../api/ubication/province.js";
 import {readAllLocalities} from "../../../../api/ubication/locality.js";
 import {readAllShoppingCartsOfUser} from "../../../../api/shoppingCart.js";
 import {Link} from "react-router-dom";
-import SmallVerticalCard from "../../../../components/cards/vertical/small/SmallVerticalCard.js";
 import SmallSingleCarousel from "../../../../components/carousel/single/small/SmallSingleCarousel.js";
+import Table from "../../../../components/table/Table.js";
+import {readAllUserOrders} from "../../../../api/order/orders.js";
 
 function Profile(){
     const [user, setUser] = useState({});
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [carts, setCarts] = useState([]);
-    const [currentCart, setCurrentCart] = useState({});
+    const [orders, setOrders] = useState([]);
     const [nameTag, setNameTag] = useState("");
     const [ubication, setUbication] = useState({country_id:"", province_id:"", locality_id:""});
     const [countries, setCountries] = useState([]);
@@ -53,13 +54,17 @@ function Profile(){
         const getMyCarts = async () => {
             const response = await readAllShoppingCartsOfUser()
             setCarts(response.data);
-            setCurrentCart(response.data[0]);
+        }
+        const getMyOrders = async () => {
+            const response = await readAllUserOrders()
+            setOrders(response.data);
         }
         getMe();
         getCountries();
         getProvinces();
         getLocalities();
         getMyCarts();
+        getMyOrders();
     }, [])
 
 
@@ -173,12 +178,16 @@ function Profile(){
                     </div>
                 </div>
                 <div className={styles.secondaryItem}>
-                    <Link to={"/profile/shoppingCarts/"} className={styles.subTitle}>
+                    <Link to={"/profile/orders/"} className={styles.subTitle}>
                         <h2>Orders</h2>
                     </Link>
-                    <div className={styles.list}>
-                        d
-                    </div>
+                    <Table headers={["Date","Amount","Status"]} rows={orders} renderRow={(order) =>
+                        <>
+                            <p>{order.created_at}</p>
+                            <p>{order.value}</p>
+                            <p>{order.Status.name}</p>
+                        </>
+                    } />
                 </div>
             </div>
         </>

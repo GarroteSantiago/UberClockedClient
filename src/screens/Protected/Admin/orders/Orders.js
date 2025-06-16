@@ -24,7 +24,7 @@ function Orders() {
     }, [])
 
     const sentOrder = async (orderId, data) => {
-        const response = await updateOrder(orderId, data);
+        await updateOrder(orderId, data);
     }
 
     return (

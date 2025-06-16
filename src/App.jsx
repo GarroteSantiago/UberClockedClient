@@ -20,6 +20,7 @@ import Product from "./screens/Public/product/Product.js";
 import AdminPanel from "./screens/Protected/Admin/panel/AdminPanel.js";
 import Orders from "./screens/Protected/Admin/orders/Orders.js";
 import Profile from "./screens/Protected/User/profile/Profile.js";
+import MyOrders from "./screens/Protected/User/profile/orders/MyOrders.js";
 
 
 Modal.setAppElement('#root')
@@ -42,6 +43,7 @@ function App() {
                   <Route path="profile/" element={<ProtectedRoute roles={["user", "admin"]} />}>
                       <Route index element={<Profile />} />
                       <Route path="info/" element={<ProfileInfo />} />
+                      <Route path="orders/" element={<MyOrders />} />
                       <Route path="shoppingCarts/" element={<ShoppingCarts />} />
                       <Route path="shoppingCarts/:id" element={<ShoppingCart />} />
                   </Route>
