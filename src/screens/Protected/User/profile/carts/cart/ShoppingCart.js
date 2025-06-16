@@ -14,6 +14,7 @@ import QuantityInput from "../../../../../../components/data/inputs/quantity/Qua
 import TextInput from "../../../../../../components/data/inputs/text/TextInput.js";
 import PrincipalButton from "../../../../../../components/buttons/principal/PrincipalButton.js";
 import {createOrder} from "../../../../../../api/order/orders.js";
+import Table from "../../../../../../components/table/Table.js";
 
 function ShoppingCart() {
     const navigate = useNavigate();
@@ -60,51 +61,40 @@ function ShoppingCart() {
     return (
         <div className={styles.layout}>
             <h1 className={styles.name}>{shoppingCart.name}</h1>
-            <div className={styles.products}>
-                <div className={styles.product}>
-                    <p>Name</p>
-                    <p>Price</p>
-                    <p>Amount</p>
-                    <p>Remove</p>
-                    <p>Modify</p>
-                </div>
-                {products.length === 0 &&
-                    <p>No products in this cart</p>
-                }
-                {products.length > 0 &&
-                    products.map((product) => (
-                        <div key={product.id} className={styles.product}>
-                            <p>{product.name}</p>
-                            <p>{product.price}</p>
-                            <p>{product.CartProduct.quantity}</p>
-                            <DeleteModal>
-                                <Form
-                                    buttonText={"Remove"}
-                                    redirectTo={location.pathname}
-                                    submitMethod={() => deleteProduct(product.id)}
-                                    title={"Remove product " + product.name}>
-                                </Form>
-                            </DeleteModal>
-                            <ModifyModal>
-                                <Form
-                                    buttonText={"Modify"}
-                                    redirectTo={location.pathname}
-                                    submitMethod={() => modifyProductAmount(product.id)}
-                                    title={"Modify amount"}
-                                >
-                                    <QuantityInput
-                                        min={1}
-                                        onChange={(e) => setNewAmount(e.target.value)}
-                                        value={newAmount}
-                                        placeholder={1}
-                                    />
-                                </Form>
-                            </ModifyModal>
-                        </div>
-
-                    ))
-                }
-            </div>
+            <Table
+                headers={["Name", "Price", "Amount", "Remove", "Modify"]}
+                rows={products}
+                renderRow={(product) => (
+                    <>
+                        <p>{product.name}</p>
+                        <p>{product.price}</p>
+                        <p>{product.CartProduct.quantity}</p>
+                        <DeleteModal>
+                            <Form
+                                buttonText={"Remove"}
+                                redirectTo={location.pathname}
+                                submitMethod={() => deleteProduct(product.id)}
+                                title={"Remove product " + product.name}
+                            />
+                        </DeleteModal>
+                        <ModifyModal>
+                            <Form
+                                buttonText={"Modify"}
+                                redirectTo={location.pathname}
+                                submitMethod={() => modifyProductAmount(product.id)}
+                                title={"Modify amount"}
+                            >
+                                <QuantityInput
+                                    min={1}
+                                    onChange={(e) => setNewAmount(e.target.value)}
+                                    value={newAmount}
+                                    placeholder={1}
+                                />
+                            </Form>
+                        </ModifyModal>
+                    </>
+                )}
+            />
             {products.length > 0 &&
                 <ModifyModal triggerText={"Buy carts"}>
                     <Form
