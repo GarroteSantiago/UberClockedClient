@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import styles from "./SmallSingleCarousel.module.scss";
 import SmallVerticalCard from "../../../cards/vertical/small/SmallVerticalCard.js";
 
-function SmallSingleCarousel({options}) {
+function SmallSingleCarousel({options, baseUrl}) {
     console.log(options);
     const [currentOption, setCurrentOption] = useState({});
 
@@ -27,7 +27,7 @@ function SmallSingleCarousel({options}) {
         <div className={styles.verticalCarousel}>
             <p className={styles.arrow} onClick={() => scroll(-1)}>◀</p>
             <div className={styles.verticalOptions}>
-                <SmallVerticalCard key={currentOption.id} to={"/profile/shoppingCarts/" + currentOption.id} >
+                <SmallVerticalCard key={currentOption.id} redirectTo={baseUrl + currentOption.id} >
                     <h4>{currentOption.name}</h4>
                     <p>Last update: <br/> {currentOption.updatedAt?.slice(0,10)}</p>
                 </SmallVerticalCard>

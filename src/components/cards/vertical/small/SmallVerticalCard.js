@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./SmallVerticalCard.module.scss";
 import {Link} from "react-router-dom";
 
-function SmallVerticalCard({children, redirectTo, key}) {
+function SmallVerticalCard({children, redirectTo}) {
     return (
-        <Link key={key} className={styles.verticalCard} to={redirectTo} >
+        <Link className={styles.verticalCard} to={redirectTo} >
             {children}
         </Link>
     )

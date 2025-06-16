@@ -162,7 +162,7 @@ function Profile(){
                     <Link to={"/profile/shoppingCarts/"} className={styles.subTitle}>
                         <h2>Shopping carts</h2>
                     </Link>
-                    <SmallSingleCarousel options={carts} />
+                    <SmallSingleCarousel options={carts} baseUrl={"/profile/shoppingCarts/"}/>
                 </div>
                 <div className={styles.principalItem}>
                     <Link to={"/profile/shoppingCarts/"} className={styles.subTitle}>
