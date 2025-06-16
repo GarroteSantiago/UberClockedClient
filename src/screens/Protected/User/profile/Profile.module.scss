@@ -9,14 +9,6 @@
   height: 100%;
 }
 
-.layout h2{
-  margin: 0;
-  padding-left: 5vw;
-  width: 100%;
-  text-align: start;
-  box-sizing: border-box;
-}
-
 .principalItem{
   display: flex;
   flex-direction: column;
@@ -59,12 +51,6 @@
   @include fadeInCard();
 }
 
-.shortCarousel{
-  width: 80%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-}
-
 .longCarousel{
   width: 80%;
   height: 100%;
@@ -80,4 +66,22 @@
 .subTitle{
   margin: 0;
   padding: 0;
+  color: $importantTextColor;
+  text-decoration: none;
+
+  @include focusCard;
+}
+
+.subTitle h2 {
+  margin: 0;
+  padding: 0;
+  color: $importantTextColor;
+  text-decoration: none;
+  width: 100%;
+  text-align: start;
+}
+
+.subTitle:hover .subTitle:visited{
+  color: $importantTextColor;
+  text-decoration: none;
 }

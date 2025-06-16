@@ -9,11 +9,17 @@ import UbicationInput from "../../../../components/data/inputs/ubication/Ubicati
 import {readAllCountries} from "../../../../api/ubication/country.js";
 import {readAllProvinces} from "../../../../api/ubication/province.js";
 import {readAllLocalities} from "../../../../api/ubication/locality.js";
+import {readAllShoppingCartsOfUser} from "../../../../api/shoppingCart.js";
+import {Link} from "react-router-dom";
+import SmallVerticalCard from "../../../../components/cards/vertical/small/SmallVerticalCard.js";
+import SmallSingleCarousel from "../../../../components/carousel/single/small/SmallSingleCarousel.js";
 
 function Profile(){
     const [user, setUser] = useState({});
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
+    const [carts, setCarts] = useState([]);
+    const [currentCart, setCurrentCart] = useState({});
     const [nameTag, setNameTag] = useState("");
     const [ubication, setUbication] = useState({country_id:"", province_id:"", locality_id:""});
     const [countries, setCountries] = useState([]);
@@ -44,11 +50,18 @@ function Profile(){
             const response = await readAllLocalities();
             setLocalities(response.data);
         }
+        const getMyCarts = async () => {
+            const response = await readAllShoppingCartsOfUser()
+            setCarts(response.data);
+            setCurrentCart(response.data[0]);
+        }
         getMe();
         getCountries();
         getProvinces();
         getLocalities();
+        getMyCarts();
     }, [])
+
 
     const updateProfile = async () => {
         await updateMe(
@@ -64,7 +77,9 @@ function Profile(){
             <h1>My Profile</h1>
             <div className={styles.layout}>
                 <div className={styles.principalItem}>
-                    <h2>Info</h2>
+                    <Link to={"/profile/shoppingCarts/"} className={styles.subTitle}>
+                        <h2>Info</h2>
+                    </Link>
                     <div className={styles.info}>
                         <ModifyModal triggerText={"Email: " + user.email}>
                             <Form
@@ -144,19 +159,23 @@ function Profile(){
                     </div>
                 </div>
                 <div className={styles.secondaryItem}>
-                    <h2>Shopping carts</h2>
-                    <div className={styles.shortCarousel}>
-                        b
-                    </div>
+                    <Link to={"/profile/shoppingCarts/"} className={styles.subTitle}>
+                        <h2>Shopping carts</h2>
+                    </Link>
+                    <SmallSingleCarousel options={carts} />
                 </div>
                 <div className={styles.principalItem}>
-                    <h2>Reviews</h2>
+                    <Link to={"/profile/shoppingCarts/"} className={styles.subTitle}>
+                        <h2>Reviews</h2>
+                    </Link>
                     <div className={styles.longCarousel}>
                         c
                     </div>
                 </div>
                 <div className={styles.secondaryItem}>
-                    <h2>Orders</h2>
+                    <Link to={"/profile/shoppingCarts/"} className={styles.subTitle}>
+                        <h2>Orders</h2>
+                    </Link>
                     <div className={styles.list}>
                         d
                     </div>
