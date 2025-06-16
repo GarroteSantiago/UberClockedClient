@@ -18,6 +18,7 @@ import ShoppingCarts from "./screens/Protected/User/shoppingCarts/ShoppingCarts.
 import ShoppingCart from "./screens/Protected/User/shoppingCart/ShoppingCart.js";
 import Product from "./screens/Public/product/Product.js";
 import AdminPanel from "./screens/Protected/Admin/panel/AdminPanel.js";
+import Orders from "./screens/Protected/Admin/orders/Orders.js";
 
 
 Modal.setAppElement('#root')
@@ -49,6 +50,7 @@ function App() {
                       <Route path="products/" element={<Products />} />
                       <Route path="components/" element={<Components />} />
                       <Route path="users/" element={<Users />} />
+                      <Route path="orders/" element={<Orders />} />
                   </Route>
                   <Route path="unauthorized" element={<p>Unauthorized</p>} />
               </Route>

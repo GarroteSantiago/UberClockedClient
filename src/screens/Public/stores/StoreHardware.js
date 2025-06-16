@@ -18,7 +18,6 @@ function StoreHardware() {
     const [keywords, setKeywords] = useState("");
     const [priceRange, setPriceRange] = useState([0, 10000]);
     const [ratingRange, setRatingRange] = useState([0, 5]);
-    const isAdmin = hasPermission("admin");
 
     useEffect(() => {
         const saveProducts = async () => {
@@ -102,7 +101,7 @@ function StoreHardware() {
             </div>
 
             <ProductCarousel>
-                {filteredProducts.map((product, index) => (
+                {filteredProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />
                 ))}
             </ProductCarousel>
