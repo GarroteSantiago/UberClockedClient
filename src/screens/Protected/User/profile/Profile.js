@@ -22,6 +22,7 @@ function Profile(){
     const [name, setName] = useState("");
     const [carts, setCarts] = useState([]);
     const [orders, setOrders] = useState([]);
+    const [reviews, setReviews] = useState([]);
     const [nameTag, setNameTag] = useState("");
     const [ubication, setUbication] = useState({country_id:"", province_id:"", locality_id:""});
     const [countries, setCountries] = useState([]);
