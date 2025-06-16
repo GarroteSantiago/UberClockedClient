@@ -19,6 +19,7 @@ function Orders() {
             const response = await readAllOrders();
             console.log(response);
             setOrders(response.data);
+            orders.sort((a, b) => a.created_at.slice(0,10) - a.created_at.slice(0,10) - b.created_at.slice(0,10));
         }
         getOrders();
     }, [])
@@ -41,8 +42,8 @@ function Orders() {
                     <p>Action</p>
                 </div>
                 {orders.map(order => (
-                    <div key={order.id} className={styles.orderWrapper} onClick={() => toggleOrder(order.id)}>
-                        <div className={styles.order}>
+                    <div key={order.id} className={styles.orderWrapper}>
+                        <div className={styles.order} onClick={() => toggleOrder(order.id)}>
                             <p>{order.ShoppingCart.name}</p>
                             <p>{order.User.name ? order.User.name : 'No name'}</p>
                             <p>{order.created_at.slice(0,10)}</p>
