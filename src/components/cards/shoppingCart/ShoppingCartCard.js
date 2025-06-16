@@ -20,7 +20,7 @@ function ShoppingCartCard({shoppingCart}) {
                         submitMethod={() => deleteCart(shoppingCart.id)}
                         buttonText="Delete"
                         title={"Are you sure?"}
-                        redirectTo="profile/shoppingCarts"
+                        redirectTo="/profile/shoppingCarts"
                     />
                 </DeleteModal>
             </div>

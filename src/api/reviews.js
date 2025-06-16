@@ -5,7 +5,7 @@ export const readAllReviews = async () => {
     return await client.get('/reviews')
 }
 
-export const getReviewsByProductId = async (product_id) => {
+export const readReviewsByProductId = async (product_id) => {
     return await client.get(`/reviews/product/${product_id}`)
 }
 

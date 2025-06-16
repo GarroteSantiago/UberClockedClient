@@ -15,6 +15,7 @@ import SingleVerticalCarousel from "../../../../components/carousel/single/verti
 import Table from "../../../../components/table/Table.js";
 import {readAllUserOrders} from "../../../../api/order/orders.js";
 import SingleHorizontalCarousel from "../../../../components/carousel/single/horizontal/SingleHorizontalCarousel.js";
+import {readAllReviews, readMyReviews} from "../../../../api/reviews.js";
 
 function Profile(){
     const [user, setUser] = useState({});
@@ -61,12 +62,17 @@ function Profile(){
             const response = await readAllUserOrders()
             setOrders(response.data);
         }
+        const getMyReviews = async () => {
+            const response = await readMyReviews();
+            setReviews(response.data);
+        }
         getMe();
         getCountries();
         getProvinces();
         getLocalities();
         getMyCarts();
         getMyOrders();
+        getMyReviews();
     }, [])
 
 
@@ -169,13 +175,23 @@ function Profile(){
                     <Link to={"/profile/shoppingCarts/"} className={styles.subTitle}>
                         <h2>Shopping carts</h2>
                     </Link>
-                    <SingleVerticalCarousel options={carts} baseUrl={"/profile/shoppingCarts/"}/>
+                    {carts.length > 0 && (
+                        <SingleVerticalCarousel options={carts} baseUrl={"/profile/shoppingCarts/"}/>
+                    )}
+                    {carts.length === 0 && (
+                        <p>You've no shopping carts</p>
+                    )}
                 </div>
                 <div className={styles.principalItem}>
                     <Link to={"/profile/reviews/"} className={styles.subTitle}>
                         <h2>Reviews</h2>
                     </Link>
-                    <SingleHorizontalCarousel baseUrl={"/profile/reviews/"} options={[]} />
+                    {reviews.length > 0 && (
+                        <SingleHorizontalCarousel baseUrl={"/profile/reviews/"} options={reviews} />
+                    )}
+                    {reviews.length === 0 && (
+                        <p>You've done no reviews</p>
+                    )}
                 </div>
                 <div className={styles.secondaryItem}>
                     <Link to={"/profile/orders/"} className={styles.subTitle}>
