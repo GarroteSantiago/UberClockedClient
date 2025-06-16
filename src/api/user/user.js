@@ -16,6 +16,10 @@ export const readUserById = async (id) => {
     return await client.get(`/users/${id}`)
 }
 
+export const updateMe = async (id, data) => {
+    return await client.patch(`/users/me`, data)
+}
+
 export const updateUser = async (id, data) => {
     return await client.patch(`/users/${id}`, data)
 }

@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
 import styles from "./ShoppingCarts.module.scss";
 import {useState} from "react";
-import {createShoppingCart, readAllShoppingCartsOfUser} from "../../../../api/shoppingCart.js";
-import ShoppingCartCard from "../../../../components/cards/shoppingCart/ShoppingCartCard.js";
-import AddModal from "../../../../components/buttons/modal/addModal/AddModal.js";
-import Form from "../../../../components/data/forms/Form.js";
-import TextInput from "../../../../components/data/inputs/text/TextInput.js";
+import {createShoppingCart, readAllShoppingCartsOfUser} from "../../../../../api/shoppingCart.js";
+import ShoppingCartCard from "../../../../../components/cards/shoppingCart/ShoppingCartCard.js";
+import AddModal from "../../../../../components/buttons/modal/addModal/AddModal.js";
+import Form from "../../../../../components/data/forms/Form.js";
+import TextInput from "../../../../../components/data/inputs/text/TextInput.js";
 
 function ShoppingCarts() {
     const [shoppingCarts, setShoppingCarts] = useState([]);

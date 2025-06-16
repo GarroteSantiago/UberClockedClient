@@ -9,16 +9,17 @@ import NavLayout from "./layouts/nav/NavLayout.js";
 import Products from "./screens/Protected/Admin/products/Products.js";
 import Components from "./screens/Protected/Admin/components/Components.js";
 import ProtectedRoute from "./components/utils/ProtectedRoute.js";
-import Profile from "./screens/Protected/User/profile/Profile.js";
+import ProfileInfo from "./screens/Protected/User/profile/info/ProfileInfo.js";
 import AuthRoute from "./components/utils/AuthRoute.js";
 import Modal from "react-modal";
 import StoreLayout from "./layouts/store/StoreLayout.js";
 import Users from "./screens/Protected/Admin/users/Users.js";
-import ShoppingCarts from "./screens/Protected/User/shoppingCarts/ShoppingCarts.js";
-import ShoppingCart from "./screens/Protected/User/shoppingCart/ShoppingCart.js";
+import ShoppingCarts from "./screens/Protected/User/profile/carts/ShoppingCarts.js";
+import ShoppingCart from "./screens/Protected/User/profile/carts/cart/ShoppingCart.js";
 import Product from "./screens/Public/product/Product.js";
 import AdminPanel from "./screens/Protected/Admin/panel/AdminPanel.js";
 import Orders from "./screens/Protected/Admin/orders/Orders.js";
+import Profile from "./screens/Protected/User/profile/Profile.js";
 
 
 Modal.setAppElement('#root')
@@ -37,16 +38,20 @@ function App() {
                   <Route path="store/pc/" element={<StoreLayout />}>
                       <Route index element={<StoreHardware />} />
                   </Route>
+                  {/*Rutas utiles para un usuario*/}
+                  <Route path="profile/" element={<ProtectedRoute roles={["user", "admin"]} />}>
+                      <Route index element={<Profile />} />
+                      <Route path="info/" element={<ProfileInfo />} />
+                      <Route path="shoppingCarts/" element={<ShoppingCarts />} />
+                      <Route path="shoppingCarts/:id" element={<ShoppingCart />} />
+                  </Route>
                   {/* Acceso para user o admin */}
                   <Route element={<ProtectedRoute roles={["user", "admin"]} />}>
                       <Route path="Product/:id" element={<Product />} />
-                      <Route path="profile/" element={<Profile />} />
-                      <Route path="ShoppingCarts/" element={<ShoppingCarts />} />
-                      <Route path="ShoppingCarts/:id" element={<ShoppingCart />} />
                   </Route>
                   {/* Solo para admin */}
                   <Route path={"admin/"} element={<ProtectedRoute roles={["admin"]} />}>
-                      <Route path="panel/" element={<AdminPanel />} />
+                      <Route index element={<AdminPanel />} />
                       <Route path="products/" element={<Products />} />
                       <Route path="components/" element={<Components />} />
                       <Route path="users/" element={<Users />} />

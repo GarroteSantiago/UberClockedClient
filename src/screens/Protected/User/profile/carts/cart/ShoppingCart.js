@@ -6,14 +6,14 @@ import {
     deleteProductInShoppingCart,
     readAllProductsInShoppingCart,
     readCartById, updateCart
-} from "../../../../api/shoppingCart.js";
-import DeleteModal from "../../../../components/buttons/modal/deleteModal/DeleteModal.js";
-import Form from "../../../../components/data/forms/Form.js";
-import ModifyModal from "../../../../components/buttons/modal/modifyModal/ModifyModal.js";
-import QuantityInput from "../../../../components/data/inputs/quantity/QuantityInput.js";
-import TextInput from "../../../../components/data/inputs/text/TextInput.js";
-import PrincipalButton from "../../../../components/buttons/principal/PrincipalButton.js";
-import {createOrder} from "../../../../api/order/orders.js";
+} from "../../../../../../api/shoppingCart.js";
+import DeleteModal from "../../../../../../components/buttons/modal/deleteModal/DeleteModal.js";
+import Form from "../../../../../../components/data/forms/Form.js";
+import ModifyModal from "../../../../../../components/buttons/modal/modifyModal/ModifyModal.js";
+import QuantityInput from "../../../../../../components/data/inputs/quantity/QuantityInput.js";
+import TextInput from "../../../../../../components/data/inputs/text/TextInput.js";
+import PrincipalButton from "../../../../../../components/buttons/principal/PrincipalButton.js";
+import {createOrder} from "../../../../../../api/order/orders.js";
 
 function ShoppingCart() {
     const navigate = useNavigate();
@@ -111,20 +111,20 @@ function ShoppingCart() {
                 }
             </div>
             {products.length > 0 &&
-                <ModifyModal triggerText={"Buy cart"}>
+                <ModifyModal triggerText={"Buy carts"}>
                     <Form
                         buttonText={"Buy"}
-                        title={"Buy cart"}
+                        title={"Buy carts"}
                         submitMethod={() => buyCart()}
                         redirectTo={location.pathname}
                     >
                     </Form>
                 </ModifyModal>
             }
-            <ModifyModal triggerText={"Modify cart name"}>
+            <ModifyModal triggerText={"Modify carts name"}>
                 <Form
-                    buttonText={"Modify cart"}
-                    title={"Modify cart name"}
+                    buttonText={"Modify carts"}
+                    title={"Modify carts name"}
                     submitMethod={() => modifyCart()}
                     redirectTo={location.pathname}
                 >

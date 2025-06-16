@@ -60,9 +60,9 @@ function Product() {
                         <p>Price: ${product.price}</p>
                         <p>Rating: {product.rating}</p>
                     </div>
-                    <AddModal text={"Add to cart"}>
+                    <AddModal text={"Add to carts"}>
                         <Form
-                            buttonText={"Add Product to cart"}
+                            buttonText={"Add Product to carts"}
                             title={"Add new product"}
                             submitMethod={() => createProductInShoppingCart(cart, product.id, amount)}
                             redirectTo={"/home"}
