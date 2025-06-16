@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import styles from "./SmallSingleCarousel.module.scss";
-import SmallVerticalCard from "../../../cards/vertical/small/SmallVerticalCard.js";
+import styles from "./SingleVerticalCarousel.module.scss";
+import VerticalCard from "../../../cards/vertical/VerticalCard.js";
 
-function SmallSingleCarousel({options, baseUrl}) {
+function SingleVerticalCarousel({options, baseUrl}) {
     console.log(options);
     const [currentOption, setCurrentOption] = useState({});
 
@@ -26,14 +26,12 @@ function SmallSingleCarousel({options, baseUrl}) {
     return(
         <div className={styles.verticalCarousel}>
             <p className={styles.arrow} onClick={() => scroll(-1)}>◀</p>
-            <div className={styles.verticalOptions}>
-                <SmallVerticalCard key={currentOption.id} redirectTo={baseUrl + currentOption.id} >
-                    <h4>{currentOption.name}</h4>
-                    <p>Last update: <br/> {currentOption.updatedAt?.slice(0,10)}</p>
-                </SmallVerticalCard>
-            </div>
+            <VerticalCard key={currentOption.id} redirectTo={baseUrl + currentOption.id} >
+                <h4>{currentOption.name}</h4>
+                <p>Last update: <br/> {currentOption.updatedAt?.slice(0,10)}</p>
+            </VerticalCard>
             <p className={styles.arrow} onClick={() => scroll(1)}>▶</p>
         </div>
     )
 }
-export default SmallSingleCarousel;
+export default SingleVerticalCarousel;

@@ -1,0 +1,37 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.verticalCard{
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  width: 50%;
+  height: 90%;
+  color: $importantTextColor;
+  text-decoration: none;
+  background: black;
+  border-radius: $spacing-sm;
+
+  @include fadeInCard;
+  @include focusCard;
+}
+
+.verticalCard h4{
+  flex: 1;
+  width: 100%;
+  margin: 4vh 0 0 0;
+  padding: 0;
+}
+
+.verticalCard p{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 3;
+  width: 100%;
+}
+
+.verticalCard:hover .verticalCard:visited{
+  color: $importantTextColor;
+  text-decoration: none;
+}

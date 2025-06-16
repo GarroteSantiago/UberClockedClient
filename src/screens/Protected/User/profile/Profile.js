@@ -11,9 +11,10 @@ import {readAllProvinces} from "../../../../api/ubication/province.js";
 import {readAllLocalities} from "../../../../api/ubication/locality.js";
 import {readAllShoppingCartsOfUser} from "../../../../api/shoppingCart.js";
 import {Link} from "react-router-dom";
-import SmallSingleCarousel from "../../../../components/carousel/single/small/SmallSingleCarousel.js";
+import SingleVerticalCarousel from "../../../../components/carousel/single/vertical/SingleVerticalCarousel.js";
 import Table from "../../../../components/table/Table.js";
 import {readAllUserOrders} from "../../../../api/order/orders.js";
+import SingleHorizontalCarousel from "../../../../components/carousel/single/horizontal/SingleHorizontalCarousel.js";
 
 function Profile(){
     const [user, setUser] = useState({});
@@ -167,15 +168,13 @@ function Profile(){
                     <Link to={"/profile/shoppingCarts/"} className={styles.subTitle}>
                         <h2>Shopping carts</h2>
                     </Link>
-                    <SmallSingleCarousel options={carts} baseUrl={"/profile/shoppingCarts/"}/>
+                    <SingleVerticalCarousel options={carts} baseUrl={"/profile/shoppingCarts/"}/>
                 </div>
                 <div className={styles.principalItem}>
-                    <Link to={"/profile/shoppingCarts/"} className={styles.subTitle}>
+                    <Link to={"/profile/reviews/"} className={styles.subTitle}>
                         <h2>Reviews</h2>
                     </Link>
-                    <div className={styles.longCarousel}>
-                        c
-                    </div>
+                    <SingleHorizontalCarousel baseUrl={"/profile/reviews/"} options={[]} />
                 </div>
                 <div className={styles.secondaryItem}>
                     <Link to={"/profile/orders/"} className={styles.subTitle}>
