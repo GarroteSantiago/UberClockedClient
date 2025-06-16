@@ -199,9 +199,9 @@ function Profile(){
                     </Link>
                     <Table headers={["Date","Amount","Status"]} rows={orders} renderRow={(order) =>
                         <>
-                            <p>{order.created_at}</p>
+                            <p>{order.created_at.slice(5,10)}</p>
                             <p>{order.value}</p>
-                            <p>{order.Status.name}</p>
+                            <p>{order.Status?.name}</p>
                         </>
                     } />
                 </div>

@@ -12,11 +12,13 @@ function Table({ headers = [], rows = [], renderRow }) {
             {rows.length === 0 ? (
                 <p>No data available</p>
             ) : (
-                rows.map((row, index) => (
+                <div className={styles.rows}>
+                    {rows.map((row, index) => (
                     <div key={row.id || index} className={styles.product}>
                         {renderRow(row)}
                     </div>
-                ))
+                    ))}
+                </div>
             )}
         </div>
     );

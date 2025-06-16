@@ -1,6 +1,6 @@
 import React from "react";
 import {useEffect} from "react";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import styles from "./Product.module.scss";
 import {readAllProducts, readProductById} from "../../../api/product.js";
 import {createProductInShoppingCart, readAllShoppingCartsOfUser} from "../../../api/shoppingCart.js";
@@ -60,24 +60,30 @@ function Product() {
                         <p>Price: ${product.price}</p>
                         <p>Rating: {product.rating}</p>
                     </div>
-                    <AddModal text={"Add to carts"}>
-                        <Form
-                            buttonText={"Add Product to carts"}
-                            title={"Add new product"}
-                            submitMethod={() => createProductInShoppingCart(cart, product.id, amount)}
-                            redirectTo={"/home"}
-                        >
-                            <DropDownInput
-                                options={carts.map(c => ({
-                                    id: String(c.id),
-                                    label: c.name,
-                                }))}
-                                onChange={(value) => setCart(value)}
+                    {carts.length > 0 && (
 
-                            />
-                            <QuantityInput value={amount} min={1} onChange={(e)=>setAmount(e.target.value)}  />
-                        </Form>
-                    </AddModal>
+                        <AddModal text={"Add to carts"}>
+                            <Form
+                                buttonText={"Add Product to carts"}
+                                title={"Add new product"}
+                                submitMethod={() => createProductInShoppingCart(cart, product.id, amount)}
+                                redirectTo={"/home"}
+                            >
+                                <DropDownInput
+                                    options={carts.map(c => ({
+                                        id: String(c.id),
+                                        label: c.name,
+                                    }))}
+                                    onChange={(value) => setCart(value)}
+
+                                />
+                                <QuantityInput value={amount} min={1} onChange={(e)=>setAmount(e.target.value)}  />
+                            </Form>
+                        </AddModal>
+                    )}
+                    {carts.length === 0 && (
+                        <Link to="/profile/ShoppingCarts">Create cart to add</Link>
+                    )}
                 </div>
             </div>
             <div className={styles.secondary}>

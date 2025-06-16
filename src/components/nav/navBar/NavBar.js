@@ -54,7 +54,7 @@ function NavBar() {
                         <NavTextButton text="Profile" route="/profile" />
                     )}
                     {isAdmin && (
-                        <NavTextButton text="Admin panel" route="/admin/panel/" />
+                        <NavTextButton text="Admin panel" route="/admin/" />
                     )}
                 </div>
             )}

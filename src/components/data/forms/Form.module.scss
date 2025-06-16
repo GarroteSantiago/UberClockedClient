@@ -31,12 +31,10 @@
 }
 
 .form{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   min-width: min-content;
-  max-width: min-content;
   min-height: max-content;
   height: 100%;
   margin: vars.$spacing-lg;

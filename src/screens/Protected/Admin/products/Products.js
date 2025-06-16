@@ -1,206 +1,268 @@
 import React, { useEffect, useState } from "react";
-import { createProduct, readAllProducts, updateProduct, deleteProduct } from "../../../../api/product.js";
+import {
+    createProduct,
+    readAllProducts,
+    updateProduct,
+    deleteProduct
+} from "../../../../api/product.js";
 import DeleteModal from "../../../../components/buttons/modal/deleteModal/DeleteModal.js";
 import ModifyModal from "../../../../components/buttons/modal/modifyModal/ModifyModal.js";
+import AddModal from "../../../../components/buttons/modal/addModal/AddModal.js";
 import Form from "../../../../components/data/forms/Form.js";
 import TextInput from "../../../../components/data/inputs/text/TextInput.js";
-import AddModal from "../../../../components/buttons/modal/addModal/AddModal.js";
-import styles from "./Products.module.scss";
 import QuantityInput from "../../../../components/data/inputs/quantity/QuantityInput.js";
+import Table from "../../../../components/table/Table.js";
+import { readAllComponents } from "../../../../api/component.js";
+import DropDownInput from "../../../../components/data/inputs/dropDown/DropDownInput.js";
 
 function Products() {
     const [products, setProducts] = useState([]);
-    const [formStates, setFormStates] = useState({});
+    const [components, setComponents] = useState([]);
+
+    // Estados para creación de producto
+    const [newName, setNewName] = useState('');
+    const [newDescription, setNewDescription] = useState('');
+    const [newImageUrl, setNewImageUrl] = useState('');
+    const [newImageAlt, setNewImageAlt] = useState('');
+    const [newComponentId, setNewComponentId] = useState(null);
+    const [newPrice, setNewPrice] = useState('');
+    const [newRating, setNewRating] = useState('');
+
+    // Estados para edición de productos (mapa id -> valor)
+    const [editNames, setEditNames] = useState({});
+    const [editDescriptions, setEditDescriptions] = useState({});
+    const [editImageUrls, setEditImageUrls] = useState({});
+    const [editImageAlts, setEditImageAlts] = useState({});
+    const [editComponentIds, setEditComponentIds] = useState({});
+    const [editPrices, setEditPrices] = useState({});
+    const [editRatings, setEditRatings] = useState({});
 
     useEffect(() => {
-        const saveProducts = async () => {
+        const fetchProducts = async () => {
             const response = await readAllProducts();
             setProducts(response.data);
-            const initialFormStates = {};
-            response.data.forEach((product) => {
-                initialFormStates[product.id] = {
-                    name: product.name,
-                    description: product.description,
-                    image_url: product.image_url,
-                    image_alt: product.image_alt,
-                    component_id: product.component_id,
-                    price: product.price,
-                    rating: product.rating
-                };
+
+            // Inicializar estados de edición con datos existentes
+            const names = {};
+            const descriptions = {};
+            const imageUrls = {};
+            const imageAlts = {};
+            const componentIds = {};
+            const prices = {};
+            const ratings = {};
+
+            response.data.forEach(product => {
+                names[product.id] = product.name;
+                descriptions[product.id] = product.description;
+                imageUrls[product.id] = product.image_url;
+                imageAlts[product.id] = product.image_alt;
+                componentIds[product.id] = product.component_id;
+                prices[product.id] = product.price;
+                ratings[product.id] = product.rating;
             });
-            setFormStates(initialFormStates);
+
+            setEditNames(names);
+            setEditDescriptions(descriptions);
+            setEditImageUrls(imageUrls);
+            setEditImageAlts(imageAlts);
+            setEditComponentIds(componentIds);
+            setEditPrices(prices);
+            setEditRatings(ratings);
         };
 
-        saveProducts();
-    }, []);
+        const fetchComponents = async () => {
+            const response = await readAllComponents();
+            setComponents(response.data);
+        };
 
-    const handleInputChange = (id, field, value) => {
-        setFormStates(prev => ({
-            ...prev,
-            [id]: {
-                ...prev[id],
-                [field]: value
-            }
-        }));
-    };
+        fetchProducts();
+        fetchComponents();
+    }, []);
 
     const handleCreate = async () => {
         const newProductData = {
-            name: formStates.newProduct?.name,
-            description: formStates.newProduct?.description,
-            image_url: formStates.newProduct?.image_url,
-            image_alt: formStates.newProduct?.image_alt,
-            component_id: parseInt(formStates.newProduct?.component_id, 10),
-            price: parseFloat(formStates.newProduct?.price),
-            rating: parseFloat(formStates.newProduct?.rating || 0)
+            name: newName,
+            description: newDescription,
+            image_url: newImageUrl,
+            image_alt: newImageAlt,
+            component_id: parseInt(newComponentId),
+            price: parseFloat(newPrice),
+            rating: parseFloat(newRating || 0)
         };
 
-        if (!newProductData.name || !newProductData.description || !newProductData.component_id || isNaN(newProductData.price)) {
-            console.log("Name, Description, Component ID, and Price are required.");
+        if (
+            !newProductData.name ||
+            !newProductData.description ||
+            !newProductData.component_id ||
+            isNaN(newProductData.price)
+        ) {
+            console.log("Missing required fields.");
             return;
         }
 
         await createProduct(newProductData);
         const response = await readAllProducts();
         setProducts(response.data);
+
+        // Limpiar formulario
+        setNewName('');
+        setNewDescription('');
+        setNewImageUrl('');
+        setNewImageAlt('');
+        setNewComponentId(null);
+        setNewPrice('');
+        setNewRating('');
     };
 
     const handleUpdate = async (id) => {
-        const { name, description, image_url, image_alt, component_id, price } = formStates[id];
-        await updateProduct(id, { name, description, image_url, image_alt, component_id, price});
-    };
+        const updatedProductData = {
+            name: editNames[id],
+            description: editDescriptions[id],
+            image_url: editImageUrls[id],
+            image_alt: editImageAlts[id],
+            component_id: parseInt(editComponentIds[id]),
+            price: parseFloat(editPrices[id]),
+            rating: parseFloat(editRatings[id] || 0)
+        };
 
+        await updateProduct(id, updatedProductData);
+        const response = await readAllProducts();
+        setProducts(response.data);
+    };
 
     const handleDelete = async (id) => {
         await deleteProduct(id);
+        const response = await readAllProducts();
+        setProducts(response.data);
+    };
+
+    const headers = [
+        "Id",
+        "Name",
+        "Description",
+        "Image URL",
+        "Image Alt",
+        "Price",
+        "Delete",
+        "Modify"
+    ];
+
+    const renderRow = (product) => {
+        const id = product.id;
+
+        const deleteForm = (
+            <Form
+                title="Delete"
+                redirectTo="/admin/products"
+                submitMethod={() => handleDelete(id)}
+                buttonText="Delete"
+            />
+        );
+
+        const modifyForm = (
+            <Form
+                title="Modify"
+                redirectTo="/admin/products"
+                submitMethod={() => handleUpdate(id)}
+                buttonText="Modify"
+            >
+                <TextInput
+                    value={editNames[id] || ""}
+                    onChange={(e) => setEditNames(prev => ({ ...prev, [id]: e.target.value }))}
+                    placeholder="New name"
+                />
+                <TextInput
+                    value={editDescriptions[id] || ""}
+                    onChange={(e) => setEditDescriptions(prev => ({ ...prev, [id]: e.target.value }))}
+                    placeholder="New description"
+                />
+                <TextInput
+                    value={editImageUrls[id] || ""}
+                    onChange={(e) => setEditImageUrls(prev => ({ ...prev, [id]: e.target.value }))}
+                    placeholder="New image URL"
+                />
+                <TextInput
+                    value={editImageAlts[id] || ""}
+                    onChange={(e) => setEditImageAlts(prev => ({ ...prev, [id]: e.target.value }))}
+                    placeholder="New image alt"
+                />
+                <DropDownInput
+                    placeholderText={"Select component"}
+                    options={components.map((c) => ({ id: c.id, label: c.name }))}
+                    name="component"
+                    selected={editComponentIds[id] || null}
+                    onChange={(e) => setEditComponentIds(prev => ({ ...prev, [id]: e }))}
+                />
+                <QuantityInput
+                    value={editPrices[id] || ""}
+                    onChange={(e) => setEditPrices(prev => ({ ...prev, [id]: e.target.value }))}
+                    placeholder="New price"
+                />
+            </Form>
+        );
+
+        return (
+            <>
+                <p>{id}</p>
+                <p>{product.name}</p>
+                <p>{product.description}</p>
+                <p>{product.image_url}</p>
+                <p>{product.image_alt}</p>
+                <p>{product.price}</p>
+                <p><DeleteModal>{deleteForm}</DeleteModal></p>
+                <p><ModifyModal>{modifyForm}</ModifyModal></p>
+            </>
+        );
     };
 
     const addProductForm = (
         <Form
             title="Create"
             submitMethod={handleCreate}
-            redirectTo="/products"
+            redirectTo="/admin/products"
             buttonText="Create"
         >
             <TextInput
-                value={formStates.newProduct?.name || ''}
-                onChange={(e) => handleInputChange('newProduct', 'name', e.target.value)}
+                value={newName}
+                onChange={(e) => setNewName(e.target.value)}
                 placeholder="Product Name"
             />
             <TextInput
-                value={formStates.newProduct?.description || ''}
-                onChange={(e) => handleInputChange('newProduct', 'description', e.target.value)}
+                value={newDescription}
+                onChange={(e) => setNewDescription(e.target.value)}
                 placeholder="Product Description"
             />
             <TextInput
-                value={formStates.newProduct?.image_url || ''}
-                onChange={(e) => handleInputChange('newProduct', 'image_url', e.target.value)}
+                value={newImageUrl}
+                onChange={(e) => setNewImageUrl(e.target.value)}
                 placeholder="Image URL"
             />
             <TextInput
-                value={formStates.newProduct?.image_alt || ''}
-                onChange={(e) => handleInputChange('newProduct', 'image_alt', e.target.value)}
+                value={newImageAlt}
+                onChange={(e) => setNewImageAlt(e.target.value)}
                 placeholder="Image Alt"
             />
-            <QuantityInput
-                value={formStates.newProduct?.component_id || ''}
-                onChange={(e) => handleInputChange('newProduct', 'component_id', e.target.value)}
-                placeholder="Component ID"
+            <DropDownInput
+                placeholderText={"Select component"}
+                options={components.map((c) => ({ id: c.id, label: c.name }))}
+                name="component"
+                selected={newComponentId}
+                onChange={(e) => setNewComponentId(e)}
             />
             <QuantityInput
-                value={formStates.newProduct?.price || ''}
-                onChange={(e) => handleInputChange('newProduct', 'price', e.target.value)}
+                value={newPrice}
+                onChange={(e) => setNewPrice(e.target.value)}
                 placeholder="Price"
             />
-
         </Form>
     );
 
     return (
-        <div className={styles.table}>
-            <div className={styles.tableHeader}>
-                <p className={styles.headerCell}>Id</p>
-                <p className={styles.headerCell}>Name</p>
-                <p className={styles.headerCell}>Description</p>
-                <p className={styles.headerCell}>Image url</p>
-                <p className={styles.headerCell}>Image alt</p>
-                <p className={styles.headerCell}>Price</p>
-                <p className={styles.headerCell}>Delete</p>
-                <p className={styles.headerCell}>Modify</p>
-            </div>
-            <div className={styles.tableBody}>
-                {products.map((product) => {
-                    const { id } = product;
-                    const form = formStates[id];
-
-                    if (!form) return null;
-
-                    const modifyForm = (
-                        <Form
-                            title="Modify"
-                            redirectTo="/products"
-                            submitMethod={() => handleUpdate(id)}
-                            buttonText="Modify"
-                        >
-                            <TextInput
-                                value={form.name}
-                                onChange={(e) => handleInputChange(id, 'name', e.target.value)}
-                                placeholder="New name"
-                            />
-                            <TextInput
-                                value={form.description}
-                                onChange={(e) => handleInputChange(id, 'description', e.target.value)}
-                                placeholder="New description"
-                            />
-                            <TextInput
-                                value={form.image_url}
-                                onChange={(e) => handleInputChange(id, 'image_url', e.target.value)}
-                                placeholder="New image URL"
-                            />
-                            <TextInput
-                                value={form.image_alt}
-                                onChange={(e) => handleInputChange(id, 'image_alt', e.target.value)}
-                                placeholder="New image alt"
-                            />
-                            <QuantityInput
-                                value={form.component_id}
-                                onChange={(e) => handleInputChange(id, 'component_id', e.target.value)}
-                                placeholder="New component ID"
-                            />
-                            <QuantityInput
-                                value={form.price}
-                                onChange={(e) => handleInputChange(id, 'price', e.target.value)}
-                                placeholder="New price"
-                            />
-                        </Form>
-                    );
-
-
-                    const deleteForm = (
-                        <Form
-                            title="Delete"
-                            redirectTo="/products"
-                            submitMethod={() => handleDelete(id)}
-                            buttonText="Delete"
-                        />
-                    );
-
-                    return (
-                        <div className={styles.element} key={id}>
-                            <p className={styles.cell}>{id}</p>
-                            <p className={styles.cell}>{product.name}</p>
-                            <p className={styles.cell}>{product.description}</p>
-                            <p className={styles.cell}>{product.image_url}</p>
-                            <p className={styles.cell}>{product.image_alt}</p>
-                            <p className={styles.cell}>{product.price}</p>
-                            <p className={styles.cell}><DeleteModal>{deleteForm}</DeleteModal></p>
-                            <p className={styles.cell}><ModifyModal>{modifyForm}</ModifyModal></p>
-                        </div>
-                    );
-                })}
-            </div>
+        <>
+            <h1>Products</h1>
+            <Table headers={headers} rows={products} renderRow={renderRow} />
             <AddModal>{addProductForm}</AddModal>
-        </div>
+        </>
     );
 }
 

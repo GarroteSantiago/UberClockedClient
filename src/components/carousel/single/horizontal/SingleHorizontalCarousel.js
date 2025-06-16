@@ -26,7 +26,9 @@ function SingleHorizontalCarousel({options, baseUrl}) {
         <div className={styles.horizontalCarousel}>
             <p className={styles.arrow} onClick={() => scroll(-1)}>◀</p>
             <HorizontalCard key={currentOption.id} redirectTo={baseUrl + currentOption.id} >
-                <h4>{currentOption.name}</h4>
+                <h4>{currentOption.Product.name}</h4>
+                    <p>{currentOption.rating}</p>
+                <p>{currentOption.comment}</p>
             </HorizontalCard>
             <p className={styles.arrow} onClick={() => scroll(1)}>▶</p>
         </div>
