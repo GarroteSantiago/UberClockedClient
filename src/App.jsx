@@ -50,10 +50,10 @@ function App() {
                           <Route index element={<ShoppingCarts />} />
                           <Route path=":id" element={<ShoppingCart />} />
                       </Route >
-                      <Route path="community/">
-                          <Route index element={<Community />} />
-                          <Route path=":id" element={<CommunityPost />} />
-                      </Route>
+                  </Route>
+                  <Route path="community/" element={<ProtectedRoute roles={["user", "organization", "admin"]} />}>
+                      <Route index element={<Community />} />
+                      <Route path=":id" element={<CommunityPost />} />
                   </Route>
                   {/* Acceso para user o admin */}
                   <Route element={<ProtectedRoute roles={["user", "organization", "admin"]} />}>

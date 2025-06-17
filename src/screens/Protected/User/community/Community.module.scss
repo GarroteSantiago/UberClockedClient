@@ -1,0 +1,81 @@
+@use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as *;
+
+.layout{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.layout *{
+  margin: 0;
+  padding: 0;
+}
+
+.title{
+  margin: 0;
+  padding: 0;
+  font-size: $fontSizeLg;
+  text-decoration: none;
+  color: $importantTextColor;
+}
+
+.subtitle{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  font-size: $fontSizeMd;
+  text-decoration: none;
+  color: $importantTextColor;
+  flex: 1;
+}
+
+.data{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  flex: 1;
+}
+
+.posts{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  flex: 3;
+  max-height: 60vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.post{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  flex: 0;
+  margin: $spacing-sm 0;
+  padding: $spacing-sm;
+  background-color: rgba(0,0,0,0.5);
+}
