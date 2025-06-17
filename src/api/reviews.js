@@ -22,8 +22,8 @@ export const readMyReviewByProduct = async (product_id) => {
     return await client.get(`/reviews/me/${product_id}`)
 }
 
-export const createReview = async (data) => {
-    return await client.post('/reviews', data)
+export const createReview = async (product_id, comment, rating) => {
+    return await client.post('/reviews', {product_id, comment, rating})
 }
 
 export const updateMyReview = async (product_id, data) => {

@@ -11,6 +11,9 @@ import Form from "../../../components/data/forms/Form.js";
 import DropDownInput from "../../../components/data/inputs/dropDown/DropDownInput.js";
 import NumberInput from "../../../components/data/inputs/quantity/QuantityInput.js";
 import QuantityInput from "../../../components/data/inputs/quantity/QuantityInput.js";
+import {createReview, readReviewsByProductId} from "../../../api/reviews.js";
+import TextInput from "../../../components/data/inputs/text/TextInput.js";
+import SingleHorizontalCarousel from "../../../components/carousel/single/horizontal/SingleHorizontalCarousel.js";
 
 function Product() {
     const [product, setProduct] = React.useState({});
@@ -18,6 +21,9 @@ function Product() {
     const [amount, setAmount] = React.useState("");
     const [cart, setCart] = React.useState(0);
     const [carts, setCarts] = React.useState([]);
+    const [reviews, setReviews] = React.useState([]);
+    const [textReview, setTextReview] = React.useState([]);
+    const [numericReview, setNumericReview] = React.useState([]);
     const [otherProducts, setOtherProducts] = React.useState([]);
     const {id} = useParams();
 
@@ -30,9 +36,15 @@ function Product() {
             const response = await readAllShoppingCartsOfUser();
             setCarts(response.data);
         }
+        const getReviews = async () => {
+            const response = await readReviewsByProductId(id);
+            setReviews(response.data);
+        }
         getProduct();
         getCarts();
+        getReviews();
     }, [id])
+
     useEffect(() => {
         const getComponent = async () => {
             if (!product.component_id) return;
@@ -46,6 +58,10 @@ function Product() {
         getComponent();
         getOtherProducts();
     },[product.component_id]);
+
+    const writeReview = async () => {
+        await createReview(id, textReview, numericReview);
+    }
     return (
         <div className={styles.layout}>
             <div className={styles.principal}>
@@ -84,6 +100,17 @@ function Product() {
                     {carts.length === 0 && (
                         <Link to="/profile/ShoppingCarts">Create cart to add</Link>
                     )}
+                    <AddModal text={"Add review"}>
+                        <Form
+                            buttonText={"Add review"}
+                            redirectTo={window.location.pathname}
+                            submitMethod={() => writeReview()}
+                            title={"Add review"}
+                        >
+                            <TextInput maxLength={200} onChange={(e)=>setTextReview(e.target.value)} value={textReview} placeholder={"Text Review"} />
+                            <QuantityInput min={0} max={5} value={numericReview} onChange={(e)=>setNumericReview(e.target.value)} placeholder={0} />
+                        </Form>
+                    </AddModal>
                 </div>
             </div>
             <div className={styles.secondary}>
@@ -93,6 +120,10 @@ function Product() {
                         <ProductCard product={product} index={product.id}/>
                     ))}
                 </div>
+            </div>
+            <div className={styles.otherReviews}>
+                <h2>Other reviews</h2>
+                <SingleHorizontalCarousel options={reviews} />
             </div>
         </div>
     )

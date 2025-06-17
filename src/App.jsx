@@ -40,7 +40,7 @@ function App() {
                       <Route index element={<StoreHardware />} />
                   </Route>
                   {/*Rutas utiles para un usuario*/}
-                  <Route path="profile/" element={<ProtectedRoute roles={["user", "admin"]} />}>
+                  <Route path="profile/" element={<ProtectedRoute roles={["user", "organization", "admin"]} />}>
                       <Route index element={<Profile />} />
                       <Route path="info/" element={<ProfileInfo />} />
                       <Route path="orders/" element={<MyOrders />} />
@@ -48,7 +48,7 @@ function App() {
                       <Route path="shoppingCarts/:id" element={<ShoppingCart />} />
                   </Route>
                   {/* Acceso para user o admin */}
-                  <Route element={<ProtectedRoute roles={["user", "admin"]} />}>
+                  <Route element={<ProtectedRoute roles={["user", "organization", "admin"]} />}>
                       <Route path="Product/:id" element={<Product />} />
                   </Route>
                   {/* Solo para admin */}
