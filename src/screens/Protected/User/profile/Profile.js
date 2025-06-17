@@ -187,7 +187,7 @@ function Profile(){
                         <h2>Reviews</h2>
                     </Link>
                     {reviews.length > 0 && (
-                        <SingleHorizontalCarousel baseUrl={"/profile/reviews/"} options={reviews} />
+                        <SingleHorizontalCarousel baseUrl={"/product/"} options={reviews} />
                     )}
                     {reviews.length === 0 && (
                         <p>You've done no reviews</p>

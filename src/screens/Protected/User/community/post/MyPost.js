@@ -19,28 +19,29 @@ function MyPost() {
             const response = await readBoardById(id);
             setPost(response.data);
         }
-        getPost();
         const getMe = async () => {
             const response = await readMe(id);
             setMe(response.data);
         }
+        getPost();
         getMe();
-        if (!post.is_available || me?.id !== post?.user_id){
-            navigate("/community");
+        if (me?.id !== post?.user_id){
+            if (!post.is_available){
+                navigate("/community");
+            }
         }
     }, [])
 
-    const buyData  = async (user) => {
+    const buyData  = async (email) => {
         await updateBoard(id, {is_available: false});
-        console.log(user)
         emailjs.send(
             'service_n6pklym',
             'template_a1o4ruj',
             {
                 from_name: 'Uberclocked',
-                to_name: user.name_tag,
-                message: `Hola desde Uberclocked!\nEsta es la información que obtuviste: ${user.email}`,
-                reply_to: user.email,
+                name_tag: me.name_tag,
+                user_name: email,
+                reply_to: me.email,
             },
             '6uiIiVyJ8dqFrRGRd'
         ).then(result => {
@@ -61,7 +62,7 @@ function MyPost() {
                             title={"Buy user data"}
                             buttonText={"Buy user data"}
                             redirectTo={"/community"}
-                            submitMethod={()=> buyData(user)}
+                            submitMethod={()=> buyData(user.email)}
                         />
                     </ModifyModal>
                 </>

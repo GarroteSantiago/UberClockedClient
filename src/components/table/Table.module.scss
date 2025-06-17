@@ -37,10 +37,12 @@
   margin: 0;
   padding: 0;
   min-width: 0;
+  width: 10vw;
   flex: 1;
   height: max-content;
   border-radius: $spacing-xxs;
   background: $buttonBackgroundColor;
+  white-space: nowrap;
 }
 
 .rows{
@@ -54,4 +56,20 @@
   height: 30vh;
   overflow-y: scroll;
   overflow-x: clip;
+  gap: $spacing-sm;
+}
+
+.rows p{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  overflow-x: scroll;
+  height: 5vh;
+  flex-wrap: nowrap;
+  wrap-option: nowrap;
+  white-space: nowrap;
+  scrollbar-width: none;
 }

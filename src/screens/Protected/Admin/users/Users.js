@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-    createUser,
     readAllUsers,
     updateUser,
     deleteUser
@@ -10,8 +9,9 @@ import ModifyModal from "../../../../components/buttons/modal/modifyModal/Modify
 import AddModal from "../../../../components/buttons/modal/addModal/AddModal.js";
 import Form from "../../../../components/data/forms/Form.js";
 import TextInput from "../../../../components/data/inputs/text/TextInput.js";
-import EmailInput from "../../../../components/data/inputs/email/EmailInput.js"; // Import EmailInput
+import EmailInput from "../../../../components/data/inputs/email/EmailInput.js";
 import styles from "./Users.module.scss";
+import Table from "../../../../components/table/Table.js";
 
 function Users() {
     const [users, setUsers] = useState([]);
@@ -61,70 +61,63 @@ function Users() {
         setUsers(response.data);
     };
 
-    return (
-        <div className={styles.table}>
-            <div className={styles.tableHeader}>
-                <p className={styles.headerCell}>ID</p>
-                <p className={styles.headerCell}>Role ID</p>
-                <p className={styles.headerCell}>Name</p>
-                <p className={styles.headerCell}>Name Tag</p>
-                <p className={styles.headerCell}>Email</p>
-                <p className={styles.headerCell}>Ubication</p>
-                <p className={styles.headerCell}>Postal Code</p>
-                <p className={styles.headerCell}>Delete</p>
-                <p className={styles.headerCell}>Modify</p>
-            </div>
-            <div className={styles.tableBody}>
-                {users.map(user => {
-                    const { id } = user;
-                    const form = formStates[id];
-                    if (!form) return null;
+    const headers = [
+        "ID", "Role", "Name", "Name Tag", "Email", "Ubication", "Postal Code", "Delete", "Modify"
+    ];
 
-                    const modifyForm = (
-                        <Form
-                            title="Modify User"
-                            redirectTo="/users"
-                            submitMethod={() => handleUpdate(id)}
-                            buttonText="Modify"
-                        >
-                            {["role_id", "name", "ubication", "postal_code"].map(field => {
-                                const InputComponent = field === "email" ? EmailInput : TextInput;
-                                return (
-                                    <InputComponent
-                                        key={field}
-                                        value={form[field]}
-                                        onChange={(e) => handleInputChange(id, field, e.target.value)}
-                                        placeholder={`New ${field.replace("_", " ")}`}
-                                    />
-                                );
-                            })}
-                        </Form>
-                    );
+    const renderRow = (user) => {
+        const { id } = user;
+        const form = formStates[id];
+        if (!form) return null;
 
-                    const deleteForm = (
-                        <Form
-                            title="Delete User"
-                            redirectTo="/users"
-                            submitMethod={() => handleDelete(id)}
-                            buttonText="Delete"
+        const modifyForm = (
+            <Form
+                title="Modify User"
+                redirectTo="/users"
+                submitMethod={() => handleUpdate(id)}
+                buttonText="Modify"
+            >
+                {["role", "name", "ubication", "postal_code"].map(field => {
+                    const InputComponent = field === "email" ? EmailInput : TextInput;
+                    return (
+                        <InputComponent
+                            key={field}
+                            value={form[field]}
+                            onChange={(e) => handleInputChange(id, field, e.target.value)}
+                            placeholder={`New ${field.replace("_", " ")}`}
                         />
                     );
-
-                    return (
-                        <div className={styles.element} key={id}>
-                            <p className={styles.cell}>{id}</p>
-                            <p className={styles.cell}>{user.role_id}</p>
-                            <p className={styles.cell}>{user.name}</p>
-                            <p className={styles.cell}>{user.name_tag}</p>
-                            <p className={styles.cell}>{user.email}</p>
-                            <p className={styles.cell}>{user.ubication}</p>
-                            <p className={styles.cell}>{user.postal_code}</p>
-                            <p className={styles.cell}><DeleteModal>{deleteForm}</DeleteModal></p>
-                            <p className={styles.cell}><ModifyModal>{modifyForm}</ModifyModal></p>
-                        </div>
-                    );
                 })}
-            </div>
+            </Form>
+        );
+
+        const deleteForm = (
+            <Form
+                title="Delete User"
+                redirectTo="/users"
+                submitMethod={() => handleDelete(id)}
+                buttonText="Delete"
+            />
+        );
+
+        return (
+            <>
+                <p>{id}</p>
+                <p>{user.Role.name}</p>
+                <p>{user.name}</p>
+                <p>{user.name_tag}</p>
+                <p>{user.email}</p>
+                <p>{user.ubication}</p>
+                <p>{user.postal_code}</p>
+                <p><DeleteModal>{deleteForm}</DeleteModal></p>
+                <p><ModifyModal>{modifyForm}</ModifyModal></p>
+            </>
+        );
+    };
+
+    return (
+        <div className={styles.users}>
+            <Table headers={headers} rows={users} renderRow={renderRow} />
         </div>
     );
 }

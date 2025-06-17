@@ -42,8 +42,8 @@ function Orders() {
                 {orders.map(order => (
                     <div key={order.id} className={styles.orderWrapper}>
                         <div className={styles.order} onClick={() => toggleOrder(order.id)}>
-                            <p>{order.ShoppingCart.name}</p>
-                            <p>{order.User.name ? order.User.name : 'No name'}</p>
+                            <p>{order.ShoppingCart?.name}</p>
+                            <p>{order.User?.name ? order.User.name : 'No name'}</p>
                             <p>{order.created_at.slice(0,10)}</p>
                             <p>{order.Status.name}</p>
                             <p>{order.delivery_date ? order.delivery_date.slice(0, 10) : 'Pending'}</p>
