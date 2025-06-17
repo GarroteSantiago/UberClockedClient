@@ -33,6 +33,16 @@ function NavBar() {
             route: "/build/server",
         }
     ]
+    const communityOptions = [
+        {
+            text: "My posts",
+            route: "/community/me",
+        },
+        {
+            text: "Posts",
+            route: "/community/posts",
+        }
+    ]
 
     return (
         <div className={styles.navBar}>
@@ -43,6 +53,7 @@ function NavBar() {
                 <DropDownMenuTextButton text="Home" route="/home" />
                 <DropDownMenu options={storeOptions} buttonText={"Store"} />
                 <DropDownMenu options={buildOptions} buttonText={"Build"} />
+                <DropDownMenu options={communityOptions} buttonText={"Community"} />
                 <DropDownMenuTextButton text="Roulette" route="/roulette" />
             </div>
             {isAuthed && (
