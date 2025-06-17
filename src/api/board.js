@@ -31,9 +31,7 @@ export const readMyInterestedBoards = async () => {
 };
 
 export const updateBoard = async (id, data) => {
-    return await client.patch(`${baseUrl}/${id}`, data, {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-    });
+    return await client.patch(`${baseUrl}/${id}`, data,);
 };
 
 export const deleteBoard = async (id) => {

@@ -13,6 +13,7 @@ import Form from "../../../../components/data/forms/Form.js";
 import TextInput from "../../../../components/data/inputs/text/TextInput.js";
 import DeleteModal from "../../../../components/buttons/modal/deleteModal/DeleteModal.js";
 import {hasPermission} from "../../../../utils/authorizationChecker.js";
+import {Link} from "react-router-dom";
 
 function Community() {
     const [myPosts, setMyPosts] = useState([]);
@@ -54,7 +55,9 @@ function Community() {
                     <div className={styles.posts}>
                         {myPosts.length > 0 && myPosts.map((post) => (
                             <div className={styles.post} key={post.id}>
-                                <p>{post.title}</p>
+                                <Link to={"/community/" + post.id} className={styles.link}>
+                                    <p>{post.title}</p>
+                                </Link>
                                 <p>{post.description}</p>
                                 <DeleteModal>
                                     <Form

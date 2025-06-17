@@ -22,7 +22,7 @@ import Orders from "./screens/Protected/Admin/orders/Orders.js";
 import Profile from "./screens/Protected/User/profile/Profile.js";
 import MyOrders from "./screens/Protected/User/profile/orders/MyOrders.js";
 import Community from "./screens/Protected/User/community/Community.js";
-import CommunityPost from "./screens/Protected/User/community/post/CommunityPost.js";
+import MyPost from "./screens/Protected/User/community/post/MyPost.js";
 
 
 Modal.setAppElement('#root')
@@ -53,7 +53,7 @@ function App() {
                   </Route>
                   <Route path="community/" element={<ProtectedRoute roles={["user", "organization", "admin"]} />}>
                       <Route index element={<Community />} />
-                      <Route path=":id" element={<CommunityPost />} />
+                      <Route path=":id" element={<MyPost />} />
                   </Route>
                   {/* Acceso para user o admin */}
                   <Route element={<ProtectedRoute roles={["user", "organization", "admin"]} />}>
