@@ -5,13 +5,13 @@ import Modal from "react-modal";
 
 
 
-function DeleteModal({children}) {
+function DeleteModal({children, triggerText ="Delete"}) {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
         <>
             <button onClick={() => setIsOpen(true)} className={styles.textButton}>
-                Delete
+                {triggerText}
             </button>
 
             <Modal

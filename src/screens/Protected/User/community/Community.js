@@ -1,16 +1,23 @@
 import React, {useEffect, useState} from "react";
 import styles from "./Community.module.scss";
-import {createBoard, deleteBoard, readAllBoards, readMyBoards} from "../../../../api/board.js";
+import {
+    createBoard,
+    createBoardInterest,
+    deleteBoard, deleteBoardInterest,
+    readAllBoards,
+    readMyBoards,
+    readMyInterestedBoards
+} from "../../../../api/board.js";
 import AddModal from "../../../../components/buttons/modal/addModal/AddModal.js";
 import Form from "../../../../components/data/forms/Form.js";
 import TextInput from "../../../../components/data/inputs/text/TextInput.js";
 import DeleteModal from "../../../../components/buttons/modal/deleteModal/DeleteModal.js";
-import auth from "../../../../stores/auth.js";
 import {hasPermission} from "../../../../utils/authorizationChecker.js";
 
 function Community() {
     const [myPosts, setMyPosts] = useState([]);
     const [communityPosts, setCommunityPosts] = useState([]);
+    const [myInterestedPosts, setMyInterestedPosts] = useState([]);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
 
@@ -19,16 +26,20 @@ function Community() {
             const response = await readMyBoards();
             setMyPosts(response.data);
         };
+        const getMyInterestedPosts = async () => {
+            const response = await readMyInterestedBoards();
+            setMyInterestedPosts(response.data);
+        }
         getMyPosts();
+        getMyInterestedPosts();
     }, []);
 
     useEffect(() => {
         const getCommunityPosts = async () => {
             const response = await readAllBoards();
-            const filtered = response.data.filter(
+            setCommunityPosts(response.data.filter(
                 (post) => !myPosts.some(myPost => myPost.id === post.id)
-            );
-            setCommunityPosts(filtered);
+            ));
         };
 
         getCommunityPosts();
@@ -72,6 +83,28 @@ function Community() {
                     </AddModal>
                 </div>
                 <div className={styles.section}>
+                    <h2 className={styles.subtitle}>My interested posts</h2>
+                    <div className={styles.posts}>
+                        {myInterestedPosts.length > 0 && myInterestedPosts.map((post) => (
+                            <div className={styles.post} key={post.Board?.id}>
+                                <p>{post.Board?.title}</p>
+                                <p>{post.Board?.description}</p>
+                                <DeleteModal triggerText={"Unmark interest"}>
+                                    <Form
+                                        title={"Delete " + post.Board?.title}
+                                        redirectTo={window.location.pathname}
+                                        submitMethod={async () => deleteBoardInterest(post.Board?.id)}
+                                        buttonText={"Unmark interest"}
+                                        />
+                                </DeleteModal>
+                            </div>
+                        ))}
+                        {myInterestedPosts.length === 0 &&
+                            <p>You've shown interest in no post.</p>
+                        }
+                    </div>
+                </div>
+                <div className={styles.section}>
                     <h2 className={styles.subtitle}>Community posts</h2>
                     <div className={styles.posts}>
                         {communityPosts.length > 0 && communityPosts.map((post) => (
@@ -88,6 +121,14 @@ function Community() {
                                         />
                                     </DeleteModal>
                                 }
+                                <AddModal text={"Mark Interest"}>
+                                    <Form
+                                        title={"Mark Interest"}
+                                        buttonText={"Mark Interest"}
+                                        submitMethod={async () => createBoardInterest(post.id)}
+                                        redirectTo={window.location.pathname}
+                                    />
+                                </AddModal>
                             </div>
                         ))}
                         {communityPosts.length ===0 &&

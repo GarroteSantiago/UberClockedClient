@@ -26,6 +26,10 @@ export const readMyBoards = async () => {
     return await client.get(`${baseUrl}/me`);
 };
 
+export const readMyInterestedBoards = async () => {
+    return await client.get(`${baseUrl}/me/interested`);
+};
+
 export const updateBoard = async (id, data) => {
     return await client.patch(`${baseUrl}/${id}`, data, {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }

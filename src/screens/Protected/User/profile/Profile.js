@@ -37,10 +37,10 @@ function Profile(){
             const newUser = response.data
             setUser(newUser);
             setEmail(newUser.email);
-            setName(newUser.name ? newUser.name : "No name defined");
+            setName(newUser.name);
             setNameTag(newUser.name_tag);
-            setUbication(newUser.ubication ? newUser.ubication : "No ubication defined");
-            setPostalCode(newUser.postal_code ? newUser.postal_code : "No postal code defined");
+            setUbication(newUser.ubication);
+            setPostalCode(newUser.postal_code);
         }
         const getCountries = async () => {
             const response = await readAllCountries();
